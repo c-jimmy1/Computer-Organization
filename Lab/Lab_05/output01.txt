@@ -1,0 +1,55 @@
+==4100== Memcheck, a memory error detector
+==4100== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==4100== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==4100== Command: ./kshell
+==4100== 
+kuzmik@kuzmik-VirtualBox Sep 26 2023 04:23:42 /media/sf_sharp/2500/Fall 2023$ Sep 26 2023
+kuzmik@kuzmik-VirtualBox Sep 26 2023 04:23:42 /media/sf_sharp/2500/Fall 2023$ 04:23:42
+kuzmik@kuzmik-VirtualBox Sep 26 2023 04:23:42 /media/sf_sharp/2500/Fall 2023$ HW01
+input01.txt
+input02.txt
+kshell
+kshell.c
+kshell.o
+Lecture 01
+Lecture 02
+Lecture 03
+Lecture 04
+Lecture 05
+Lecture XX
+Makefile
+output01.txt
+output02.txt
+reverse-malloc
+reverse-malloc.c
+testing.sh
+kuzmik@kuzmik-VirtualBox Sep 26 2023 04:23:42 /media/sf_sharp/2500/Fall 2023$ total 393
+drwxrwx--- 1 root vboxsf   4096 Sep 26 04:23 .
+drwxrwx--- 1 root vboxsf  16384 Sep 12 09:23 ..
+drwxrwx--- 1 root vboxsf  20480 Sep 26 03:10 HW01
+-rwxrwx--- 1 root vboxsf     25 Sep 26 03:35 input01.txt
+-rwxrwx--- 1 root vboxsf    185 Sep 26 04:11 input02.txt
+-rwxrwx--- 1 root vboxsf 100768 Sep 26 04:23 kshell
+-rwxrwx--- 1 root vboxsf   4152 Sep 26 04:20 kshell.c
+-rwxrwx--- 1 root vboxsf 183944 Sep 26 04:23 kshell.o
+drwxrwx--- 1 root vboxsf   4096 Sep 13 08:47 Lecture 01
+drwxrwx--- 1 root vboxsf   4096 Sep 26 03:07 Lecture 02
+drwxrwx--- 1 root vboxsf      0 Sep  9 15:18 Lecture 03
+drwxrwx--- 1 root vboxsf   4096 Sep 12 10:27 Lecture 04
+drwxrwx--- 1 root vboxsf   4096 Sep 15 09:08 Lecture 05
+drwxrwx--- 1 root vboxsf   4096 Sep 22 15:39 Lecture XX
+-rwxrwx--- 1 root vboxsf    859 Sep 26 03:37 Makefile
+-rwxrwx--- 1 root vboxsf    760 Sep 26 04:23 output01.txt
+-rwxrwx--- 1 root vboxsf   8395 Sep 26 04:22 output02.txt
+-rwxrwx--- 1 root vboxsf  16168 Sep 26 04:22 reverse-malloc
+-rwxrwx--- 1 root vboxsf   1392 Sep 26 03:07 reverse-malloc.c
+-rwxrwx--- 1 root vboxsf   1569 Sep 26 04:16 testing.sh
+kuzmik@kuzmik-VirtualBox Sep 26 2023 04:23:42 /media/sf_sharp/2500/Fall 2023$ ==4100== 
+==4100== HEAP SUMMARY:
+==4100==     in use at exit: 0 bytes in 0 blocks
+==4100==   total heap usage: 14 allocs, 14 frees, 10,380 bytes allocated
+==4100== 
+==4100== All heap blocks were freed -- no leaks are possible
+==4100== 
+==4100== For lists of detected and suppressed errors, rerun with: -s
+==4100== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
