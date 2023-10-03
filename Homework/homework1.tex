@@ -119,8 +119,8 @@ Compilers can have a profound impact on the performance of an application. Assum
     \\
     Speedup = Old Execution Time / New Execution Time
         \begin{center}
-            Speedup A $ = \frac{1.0E^{9} * 1.1}{6.0E^{9} * 1.1} = 1.67 $\\[0.25in]
-            Speedup B $ = \frac{1.2E^{9} * 1.25}{6E^{9} * 1.1} = 2.27$\\[0.25in]
+            Speedup A $ = \frac{1.0E^{9} * 1.1}{6.0E^{8} * 1.1} = 1.67 $\\[0.25in]
+            Speedup B $ = \frac{1.2E^{9} * 1.25}{6.0E^{8} * 1.1} = 2.27$\\[0.25in]
         \end{center}
 
 \end{enumerate}
@@ -133,9 +133,44 @@ Assume for arithmetic, load/store, and branch instructions, a processor has CPIs
 Assume that, as the program is parallelized to run over multiple cores, the number of arithmetic and load/store instructions per processor is divided by 0.7 x p (where p is the number of processors) but the number of branch instructions per processor remains the same.
 \begin{enumerate}[(a)]
     \item Find the total execution time for this program on 1, 2, 4, and 8 processors, and show the relative speedup of the 2, 4, and 8 processor result relative to the single processor result.
-    \item If the CPI of the arithmetic instructions was doubled, what would the impact be on the execution time of the program on 1, 2, 4, or 8 processors?
-    \item To what should the CPI of load/store instructions be reduced in order for a single processor to match the performance of four processors using the original CPI values?
+    \\
+    \textbf{Answer:}
+    \\
+    Processor 1 time = (2.56E9 * 1 + 1.28E9 * 12 + 2.56E8 * 5) / 2E9 = 9.6 seconds\\
+    Relative speedup = 9.6 / 9.6 = 1\\
+    \\
+    Processor 2 time = ((2.56E9/1.4 * 1) + (1.28E9/1.4 * 12) + 2.56E8 * 5) / 2E9 = 7.04 seconds\\
+    Relative speedup = 9.6 / 7.04 = 1.36\\
+    \\
+    Processor 4 time = ((2.56E9/2.8 * 1) + (1.28E9/2.8 * 12) + 2.56E8 * 5) / 2E9 = 3.86 seconds\\
+    Relative speedup = 9.6 / 3.86 = 2.49\\
+    \\
+    Processor 8 time = ((2.56E9/5.6 * 1) + (1.28E9/5.6 * 12) + 2.56E8 * 5) / 2E9 = 2.25 seconds\\
+    Relative speedup = 9.6 / 2.25 = 4.27\\
 
+    \item If the CPI of the arithmetic instructions was doubled, what would the impact be on the execution time of the program on 1, 2, 4, or 8 processors?
+    \\
+    \textbf{Answer:}
+    \\
+    Processor 1 time = (2560 * 2 + 1280 * 12 + 256 * 5) / 2E9 = 10.88 ms\\
+    Processor 2 time = ((2560/1.4 * 2) + (1280/1.4 * 12) + 256 * 5) / 2E9 = 7.95 ms\\
+    Processor 4 time = ((2560/2.8 * 2) + (1280/2.8 * 12) + 256 * 5) / 2E9 = 4.3 ms\\
+    Processor 8 time = ((2560/5.6 * 2) + (1280/5.6 * 12) + 256 * 5) / 2E9 = 2.47 ms\\
+    
+    \item To what should the CPI of load/store instructions be reduced in order for a single processor to match the performance of four processors using the original CPI values?
+    \\
+    \textbf{Answer:}
+    \\
+    Reduced CPI = x / Original CPI\\
+    Execution Time = (2.56E9 * 1 + 1.28E9 * x + 2.56E8 * 5) / 2E9 = 3.86 seconds\\
+    Clock Cycle = 2.56E9 * 1 + 1.28E9 * x + 2.56E8 * 5 = 3.84E9 + 1.28E9 * x
+    \begin{center}    
+        3.86 = (3.84 + 1.28 * x) / 2.0E9\\
+        1.94 = 0.64x\\
+        x = 3.03\\
+        Reduced CPI = 3.03/12 = 0.2525\\
+    \end{center}
+    \textbf{It should be reduced by 25.25\% for a single processor to match the performance of 4}
 \end{enumerate}
 
 
@@ -144,6 +179,18 @@ Assume that, as the program is parallelized to run over multiple cores, the numb
 COD Section 1.11 (Fallacies and pitfalls) cites as a pitfall the utilization of a subset of the performance equation as a performance metric. To illustrate this, consider the following two processors. P1 has a clock rate of 4 GHz, average CPI of 0.9, and requires the execution of 5.0E9 instructions. P2 has a clock rate of 3 GHz, an average CPI of 0.75, and requires the execution of 1.0E9 instructions.
 \begin{enumerate}[(a)]
     \item One usual fallacy is to consider the computer with the largest clock rate as having the highest performance. Check if this is true for P1 and P2.
+    \\
+    \textbf{Answer:}
+    \\
+    Execution Time = (Instruction Count * CPI) / ClockRate
+    Performance = 1 / Execution Time
+        \begin{center}
+            P1 = (5.0E9 * 0.9) / 4 GHz = 1.125 seconds\\
+            Performance = 1 / 1.125 = 0.89\\
+
+            P2 = (1.0E9 * 0.75) / 3 GHz = 0.25 seconds\\
+            Performance = 1 / 0.25 = 4\\
+        \end{center}
     \item Another fallacy is to consider that the processor executing the largest number of instructions will need a larger CPU time. Considering that processor P1 is executing a sequence of 1.0E9 instructions and that the CPI of processors P1 and P2 do not change, determine the number of instructions that P2 can execute in the same time that P1 needs to execute 1.0E9 instructions.
     \item A common fallacy is to use MIPS (millions of instructions per second) to compare the performance of two different processors, and consider that the processor with the largest MIPS has the largest performance. Check if this is true for P1 and P2.
     \item  Another common performance figure is MFLOPS (millions of floating-point operations per second), defined as:\\MFLOPS = No. FP operations / (execution time × 1E6)\\but this figure has the same problems as MIPS. Assume that 40\% of the instructions executed on both P1 and P2 are floating-point instructions. Find the MFLOPS figures for the programs.
