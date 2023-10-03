@@ -6,6 +6,7 @@
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 \usepackage{cancel}
+\usepackage{amsfonts}
 
 % Set up fancy header/footer
 \pagestyle{fancy}
@@ -92,10 +93,31 @@ Compilers can have a profound impact on the performance of an application. Assum
 
 \begin{enumerate}[(a)]
     \item Find the average CPI for each program given that the processor has a clock cycle time of 1 ns.
+    \\
+    \textbf{Answer:}
+    \\
+    CPI = CPU Time / (Instruction Count * Clock Cycle Time)
+        \begin{center}
+            compiler A $ = \frac{1.1s}{1.0E^{9} * 1.0E^{-9}} = 1.1 \text{ CPI} $\\[0.25in]
+            compiler B $ = \frac{1.5s}{1.2E^{9} * 1.0E^{-9}} = 1.25 \text{ CPI} $\\
+        \end{center}
     
     \item Assume the compiled programs run on two different processors. If the execution times on the two processors are the same, how much faster is the clock of the processor running compiler A's code versus the clock of the processor running compiler B's code?
+    \\
+    \textbf{Answer:}
+    \\
+    Clock Rate = (Instructions * CPI) / Execution Time
+        \begin{center}
+            Clock A $ = \frac{1.0E^{9} * 1.1}{1.1s} $\\[0.25in]
+            Clock B $ = \frac{1.2E^{9} * 1.25}{1.1s} $\\[0.25in]
+            Clock B / Clock A $\approx$ 1.37 Faster than Clock B\\
+        \end{center}
+    
     \item A new compiler is developed that uses only 6.0E8 instructions and has an average CPI of 1.1. What is the speedup of using this new compiler versus using compiler A or B on the original processor?
-
+    \\
+    \textbf{Answer:}
+    \\
+    
 \end{enumerate}
 
 
