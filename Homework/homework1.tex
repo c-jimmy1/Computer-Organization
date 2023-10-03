@@ -73,12 +73,30 @@ P3 has a 4.0 GHz clock rate and has a CPI of 2.2.
     \\
     \textbf{Answer:}
     \\
-    
-    
+    New CPI = 1.2 * Old CPI
+    New Execution Time = 0.7 * Old Execution Time
+    Clock Rate = (CPI * Instructions per Second) / Execution Time
+        \begin{center}
+            P1 = (20 * 1.8) / 7 $\approx$ 5.14 GHz\\
+            P2 = (25 * 1.2) / 7 $\approx$ 4.29 GHz\\
+            P3 = (18 * 2.64) / 7 $\approx$ 6.79 GHz\\
+        \end{center}
 
 \end{enumerate}
 
 \subsection{Textbook Problem 4.15.8}
+Compilers can have a profound impact on the performance of an application. Assume that for a program, compiler A results in a dynamic instruction count of 1.0E9 and has an execution time of 1.1 s, while compiler B results in a dynamic instruction count of 1.2E9 and an execution time of 1.5 s.
+
+\begin{enumerate}[(a)]
+    \item Find the average CPI for each program given that the processor has a clock cycle time of 1 ns.
+    \item Assume the compiled programs run on two different processors. If the execution times on the two processors are the same, how much faster is the clock of the processor running compiler A's code versus the clock of the processor running compiler B's code?
+    \item A new compiler is developed that uses only 6.0E8 instructions and has an average CPI of 1.1. What is the speedup of using this new compiler versus using compiler A or B on the original processor?
+
+
+\end{enumerate}
+
+
+
 \subsection{Textbook Problem 4.15.10}
 \subsection{Textbook Problem 4.15.13}
 \subsection{Textbook Problem 4.15.14}

@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1696309222 "c:/Users/jc219/OneDrive/Desktop/GitHub/CompOrg/Homework/homework1.tex" "homework1.pdf" "homework1" 1696309222 0
-  "c:/Users/jc219/OneDrive/Desktop/GitHub/CompOrg/Homework/homework1.tex" 1696309221 2864 ae65f8181bd14674462f0bc2a2fdcce1 ""
+["pdflatex"] 1696310506 "c:/Users/jc219/OneDrive/Desktop/GitHub/CompOrg/Homework/homework1.tex" "homework1.pdf" "homework1" 1696310507 0
+  "c:/Users/jc219/OneDrive/Desktop/GitHub/CompOrg/Homework/homework1.tex" 1696310506 4134 dd144954c163e6e2bf59d190f46c14c0 ""
   "c:/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1696299850 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1696298154 1004 54797486969f23fa377b128694d548df ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1696298154 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -18,6 +18,7 @@
   "c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm" 1696298916 1120 8b7d695260f3cff42e636090a8002094 ""
   "c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1696298154 32080 340ef9bf63678554ee606688e7b5339d ""
   "c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1696298154 32722 d7379af29a190c3f453aba36302ff5a9 ""
+  "c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1696298154 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "c:/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1696301225 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "c:/texlive/2023/texmf-dist/tex/generic/iftex/iftex.sty" 1696300333 7237 bdd120a32c8fdb4b433cf9ca2e7cd98a ""
   "c:/texlive/2023/texmf-dist/tex/generic/iftex/ifvtex.sty" 1696300333 1057 525c2192b5febbd8c1f662c9468335bb ""
@@ -45,8 +46,8 @@
   "c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1696303448 4721891 a1ad6110735ab1e410b2de96572ab420 ""
   "c:/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1696303510 8183295 a171a164c375c438a619cebe060f15e8 ""
   "c:/texlive/2023/texmf.cnf" 1696303436 713 e69b156964470283e0530f5060668171 ""
-  "homework1.aux" 1696309222 947 f415d1936b0e9b87921ec430b8c6ec6b "pdflatex"
-  "homework1.tex" 1696309221 2864 ae65f8181bd14674462f0bc2a2fdcce1 ""
+  "homework1.aux" 1696310507 947 f415d1936b0e9b87921ec430b8c6ec6b "pdflatex"
+  "homework1.tex" 1696310506 4134 dd144954c163e6e2bf59d190f46c14c0 ""
   (generated)
   "homework1.aux"
   "homework1.log"
