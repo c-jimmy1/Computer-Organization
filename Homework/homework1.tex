@@ -20,6 +20,8 @@
 
 \begin{document}
 \section{Homework 1}
+
+%  ===========QUESTION 1===========
 \subsection{Textbook Problem 4.15.5}
 Consider three different processors P1, P2, and P3 executing the same instruction set. 
 P1 has a 3 GHz clock rate and a CPI of 1.5. P2 has a 2.5 GHz clock rate and a CPI of 1.0. 
@@ -84,24 +86,70 @@ P3 has a 4.0 GHz clock rate and has a CPI of 2.2.
 
 \end{enumerate}
 
+%  ===========QUESTION 2===========
 \subsection{Textbook Problem 4.15.8}
 Compilers can have a profound impact on the performance of an application. Assume that for a program, compiler A results in a dynamic instruction count of 1.0E9 and has an execution time of 1.1 s, while compiler B results in a dynamic instruction count of 1.2E9 and an execution time of 1.5 s.
 
 \begin{enumerate}[(a)]
     \item Find the average CPI for each program given that the processor has a clock cycle time of 1 ns.
+    
     \item Assume the compiled programs run on two different processors. If the execution times on the two processors are the same, how much faster is the clock of the processor running compiler A's code versus the clock of the processor running compiler B's code?
     \item A new compiler is developed that uses only 6.0E8 instructions and has an average CPI of 1.1. What is the speedup of using this new compiler versus using compiler A or B on the original processor?
-
 
 \end{enumerate}
 
 
-
+%  ===========QUESTION 3===========
 \subsection{Textbook Problem 4.15.10}
-\subsection{Textbook Problem 4.15.13}
-\subsection{Textbook Problem 4.15.14}
-\subsection{Textbook Problem 4.15.15}
-\subsection{Textbook Problem 4.15.16}
+Assume for arithmetic, load/store, and branch instructions, a processor has CPIs of 1, 12, and 5, respectively. Also assume that on a single processor a program requires the execution of 2.56E9 arithmetic instructions, 1.28E9 load/store instructions, and 256 million branch instructions. Assume that each processor has a 2 GHz clock frequency.
+\\
+Assume that, as the program is parallelized to run over multiple cores, the number of arithmetic and load/store instructions per processor is divided by 0.7 x p (where p is the number of processors) but the number of branch instructions per processor remains the same.
+\begin{enumerate}[(a)]
+    \item Find the total execution time for this program on 1, 2, 4, and 8 processors, and show the relative speedup of the 2, 4, and 8 processor result relative to the single processor result.
+    \item If the CPI of the arithmetic instructions was doubled, what would the impact be on the execution time of the program on 1, 2, 4, or 8 processors?
+    \item To what should the CPI of load/store instructions be reduced in order for a single processor to match the performance of four processors using the original CPI values?
 
+\end{enumerate}
+
+
+%  ===========QUESTION 4===========
+\subsection{Textbook Problem 4.15.13}
+COD Section 1.11 (Fallacies and pitfalls) cites as a pitfall the utilization of a subset of the performance equation as a performance metric. To illustrate this, consider the following two processors. P1 has a clock rate of 4 GHz, average CPI of 0.9, and requires the execution of 5.0E9 instructions. P2 has a clock rate of 3 GHz, an average CPI of 0.75, and requires the execution of 1.0E9 instructions.
+\begin{enumerate}[(a)]
+    \item One usual fallacy is to consider the computer with the largest clock rate as having the highest performance. Check if this is true for P1 and P2.
+    \item Another fallacy is to consider that the processor executing the largest number of instructions will need a larger CPU time. Considering that processor P1 is executing a sequence of 1.0E9 instructions and that the CPI of processors P1 and P2 do not change, determine the number of instructions that P2 can execute in the same time that P1 needs to execute 1.0E9 instructions.
+    \item A common fallacy is to use MIPS (millions of instructions per second) to compare the performance of two different processors, and consider that the processor with the largest MIPS has the largest performance. Check if this is true for P1 and P2.
+    \item  Another common performance figure is MFLOPS (millions of floating-point operations per second), defined as:\\MFLOPS = No. FP operations / (execution time × 1E6)\\but this figure has the same problems as MIPS. Assume that 40\% of the instructions executed on both P1 and P2 are floating-point instructions. Find the MFLOPS figures for the programs.
+
+\end{enumerate}
+
+
+%  ===========QUESTION 5===========
+\subsection{Textbook Problem 4.15.14}
+Another pitfall cited in COD Section 1.11 (Fallacies and pitfalls) is expecting to improve the overall performance of a computer by improving only one aspect of the computer. Consider a computer running a program that requires 250 s, with 70 s spent executing FP instructions, 85 s executing L/S instructions, 40 s executing branch instructions, and the remaining time is spent executing integer instructions.
+\begin{enumerate}[(a)]
+    \item By how much is the total time reduced if the time for FP operations is reduced by 20\%?
+    \item By how much is the time for INT operations reduced if the total time is reduced by 20\%? Assume the time for other operations reminds the same.
+    \item Can the total time can be reduced by 20\% by reducing only the time for branch instructions?
+
+\end{enumerate}
+
+
+%  ===========QUESTION 6===========
+\subsection{Textbook Problem 4.15.15}
+Assume a program requires the execution of 50 × 106 FP instructions, 110 × 106 INT instructions, 80 × 106 L/S instructions, and 16 × 106 branch instructions. The CPI for each type of instruction is 1, 1, 4, and 2, respectively. Assume that the processor has a 2 GHz clock rate.
+\begin{enumerate}[(a)]
+    \item By how much must we improve the CPI of FP instructions if we want the program to run two times faster?
+    \item By how much must we improve the CPI of L/S instructions if we want the program to run two times faster?
+    \item By how much is the execution time of the program improved if the CPI of INT and FP instructions is reduced by 40\% and the CPI of L/S and Branch is reduced by 30\%?
+
+\end{enumerate}
+
+
+%  ===========QUESTION 7===========
+\subsection{Textbook Problem 4.15.16}
+When a program is adapted to run on multiple processors in a multiprocessor system, the execution time on each processor is comprised of computing time and the overhead time required for locked critical sections and/or to send data from one processor to another.
+\\
+Assume a program requires t = 100 s of execution time on one processor. When run p processors, each processor requires t/p s, as well as an additional 4 s of overhead, irrespective of the number of processors. Compute the per-processor execution time for 2, 4, 8, 16, 32, 64, and 128 processors. For each case, list the corresponding speedup relative to a single processor and the ratio between actual speedup versus ideal speedup (speedup if there was no overhead).
 
 \end{document}
