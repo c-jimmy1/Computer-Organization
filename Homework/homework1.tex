@@ -21,7 +21,10 @@
 \begin{document}
 \section{Homework 1}
 \subsection{Textbook Problem 4.15.5}
-Consider three different processors P1, P2, and P3 executing the same instruction set. P1 has a 3 GHz clock rate and a CPI of 1.5. P2 has a 2.5 GHz clock rate and a CPI of 1.0. P3 has a 4.0 GHz clock rate and has a CPI of 2.2.
+Consider three different processors P1, P2, and P3 executing the same instruction set. 
+P1 has a 3 GHz clock rate and a CPI of 1.5. P2 has a 2.5 GHz clock rate and a CPI of 1.0. 
+P3 has a 4.0 GHz clock rate and has a CPI of 2.2.
+
 \begin{center}
     \begin{tabular}{|c|c|c|c|}
         \hline
@@ -35,16 +38,52 @@ Consider three different processors P1, P2, and P3 executing the same instructio
         \hline
     \end{tabular}
 \end{center}
+
 \begin{enumerate}[(a)]
     \item Which processor has the highest performance expressed in instructions per second?
-    Answer:
+    \textbf{Answer:}
+    \\
+    Instructions per Second = Clock Rate/CPI
         \begin{center}
-            
+            P1 = 3 GHz/1.5 = 2 GHz\\
+            P2 = 2.5 GHz/1.0 = 2.5 GHz\\
+            P3 = 4.0 GHz/2.2 = 1.8 GHz\\
         \end{center}
+    \textbf{P2 has the highest performance expressed in instructions per second}
+    
     \item If the processors each execute a program in 10 seconds, find the number of cycles and the number of instructions.
+    \\
+    \textbf{Answer:}
+    \\
+    Number of Cycles = Clock Rate * Execution Time
+        \begin{center}
+            P1 = 3 GHz * 10s = 30 Billion Cycles\\
+            P2 = 2.5 GHz * 10s = 25 Billion Cycles\\
+            P3 = 4.0 GHz * 10s = 40 Billion Cycles\\
+        \end{center}
+    
+    Number of Instructions = Instructions per Second * Execution Time
+        \begin{center}
+            P1 = 2 Hz * 10s = 20 Billion Instructions\\
+            P2 = 2.5 GHz * 10s = 25 Billion Instructions\\
+            P3 = 1.8 GHz * 10s = 18 Billion Instructions\\
+        \end{center}
+
     \item We are trying to reduce the execution time by 30\% but this leads to an increase of 20\% in the CPI. What clock rate should we have to get this time reduction?
+    \\
+    \textbf{Answer:}
+    \\
+    
+    
+
 \end{enumerate}
 
-% Rest of your document here...
+\subsection{Textbook Problem 4.15.8}
+\subsection{Textbook Problem 4.15.10}
+\subsection{Textbook Problem 4.15.13}
+\subsection{Textbook Problem 4.15.14}
+\subsection{Textbook Problem 4.15.15}
+\subsection{Textbook Problem 4.15.16}
+
 
 \end{document}
