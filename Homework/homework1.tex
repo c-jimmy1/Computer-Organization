@@ -156,7 +156,6 @@ Assume that, as the program is parallelized to run over multiple cores, the numb
     Processor 2 time = ((2560/1.4 * 2) + (1280/1.4 * 12) + 256 * 5) / 2E9 = 7.95 ms\\
     Processor 4 time = ((2560/2.8 * 2) + (1280/2.8 * 12) + 256 * 5) / 2E9 = 4.3 ms\\
     Processor 8 time = ((2560/5.6 * 2) + (1280/5.6 * 12) + 256 * 5) / 2E9 = 2.47 ms\\
-    
     \item To what should the CPI of load/store instructions be reduced in order for a single processor to match the performance of four processors using the original CPI values?
     \\
     \textbf{Answer:}
@@ -182,7 +181,7 @@ COD Section 1.11 (Fallacies and pitfalls) cites as a pitfall the utilization of 
     \\
     \textbf{Answer:}
     \\
-    Execution Time = (Instruction Count * CPI) / ClockRate
+    Execution Time = (Instruction Count * CPI) / ClockRate\\
     Performance = 1 / Execution Time
         \begin{center}
             P1 = (5.0E9 * 0.9) / 4 GHz = 1.125 seconds\\
@@ -191,10 +190,41 @@ COD Section 1.11 (Fallacies and pitfalls) cites as a pitfall the utilization of 
             P2 = (1.0E9 * 0.75) / 3 GHz = 0.25 seconds\\
             Performance = 1 / 0.25 = 4\\
         \end{center}
+        \textbf{We can see that P2 still has the higher performace even though P1 has a higher clock rate.}
     \item Another fallacy is to consider that the processor executing the largest number of instructions will need a larger CPU time. Considering that processor P1 is executing a sequence of 1.0E9 instructions and that the CPI of processors P1 and P2 do not change, determine the number of instructions that P2 can execute in the same time that P1 needs to execute 1.0E9 instructions.
+    \\
+    \textbf{Answer:}
+    \\
+    P1 Execution Time = 1.0E9 * 0.9 / 4 GHz = 0.225 seconds\\
+    Instruction Count = (Execution Time * Clock Rate) / CPI\\
+    P2 Instruction Count = (0.225 * 3 GHz) / 0.75 = 9.0E8\\
+    \textbf{P2 executes 9.0E8 instructions in the same time that P1 executes 1.0E9 instructions.}
+   
     \item A common fallacy is to use MIPS (millions of instructions per second) to compare the performance of two different processors, and consider that the processor with the largest MIPS has the largest performance. Check if this is true for P1 and P2.
-    \item  Another common performance figure is MFLOPS (millions of floating-point operations per second), defined as:\\MFLOPS = No. FP operations / (execution time × 1E6)\\but this figure has the same problems as MIPS. Assume that 40\% of the instructions executed on both P1 and P2 are floating-point instructions. Find the MFLOPS figures for the programs.
+    \\
+    \textbf{Answer:}
+    \\
+    MIPS = Clockrate / (CPI) * E6
+    \begin{center}
+        MIPS P1 = 4E9 GHz / (0.9) * E6 = 4.44E3 MIPS\\
+        MIPS P2 = 3E9 GHz / (0.75) * E6 = 4.0E3 MIPS\\
+    \end{center}
 
+    P1 has the higher MIPS but P2 has the higher performance. Performance doesn't rely on MIPS.
+    \item  Another common performance figure is MFLOPS (millions of floating-point operations per second), defined as:\\MFLOPS = No. FP operations / (execution time × 1E6)\\but this figure has the same problems as MIPS. Assume that 40\% of the instructions executed on both P1 and P2 are floating-point instructions. Find the MFLOPS figures for the programs.
+    \\
+    \textbf{Answer:}
+    \\
+    FP Operations = Instruction Count * Clock Rate\\
+    Time = FP Operations / Clock Rate
+    \begin{center}
+        FP Operations P1 = 5.0E9 * 0.4E9 = 1.8E9\\
+        FP Operations P2 = 1.0E9 * 0.4 * 0.75 = 0.3E9\\[0.15in]
+        Time P1 = 1.8E9 / 4E9 = 0.45 seconds\\
+        Time P2 = 0.3E9 / 3E9 = 0.1 seconds\\[0.15in]
+        MFLOPS P1 = 1.8E9 / (0.45 * 1E6) = 4000 MFLOPS\\
+        MFLOPS P2 = 0.3E9 / (0.1 * 1E6) = 3000 MFLOPS\\
+    \end{center}
 \end{enumerate}
 
 
@@ -203,8 +233,33 @@ COD Section 1.11 (Fallacies and pitfalls) cites as a pitfall the utilization of 
 Another pitfall cited in COD Section 1.11 (Fallacies and pitfalls) is expecting to improve the overall performance of a computer by improving only one aspect of the computer. Consider a computer running a program that requires 250 s, with 70 s spent executing FP instructions, 85 s executing L/S instructions, 40 s executing branch instructions, and the remaining time is spent executing integer instructions.
 \begin{enumerate}[(a)]
     \item By how much is the total time reduced if the time for FP operations is reduced by 20\%?
+    \\
+    \textbf{Answer:}
+    \\
+    Total time reduced = ammount of time reduced when FP operations are reduced by 20\%
+    \begin{center}
+        FP time = 70 seconds\\
+        FP time reduced = 70 * 0.2 = 14 seconds\\
+    \end{center}
+    \textbf{The total time is reduced by 14 seconds.}
+    
     \item By how much is the time for INT operations reduced if the total time is reduced by 20\%? Assume the time for other operations reminds the same.
+    \\
+    \textbf{Answer:}
+    \\
+    INT Reduced Time = 0.8 * 250 = 200 seconds\\
+    Total Time = 70 + 85 + 40 = 195 seconds\\
+    Total Time Reduced = 200 - 195 = 5 seconds\\
+    5/55 x 100 = 90.9\%\\[0.25in]
+    \textbf{The time for INT operations is reduced by 90.9\%}
+    
     \item Can the total time can be reduced by 20\% by reducing only the time for branch instructions?
+    \\
+    \textbf{Answer:}
+    \\
+    Reduced Time = 0.8 * 250 = 200 seconds\\
+    Total Time = 70 + 85 + 55 = 210 seconds\\[0.25in]
+    \textbf{No, the total time cannot be reduced by 20\% just by reducing the time for branch instructions.}
 
 \end{enumerate}
 
@@ -214,9 +269,37 @@ Another pitfall cited in COD Section 1.11 (Fallacies and pitfalls) is expecting 
 Assume a program requires the execution of 50 × 106 FP instructions, 110 × 106 INT instructions, 80 × 106 L/S instructions, and 16 × 106 branch instructions. The CPI for each type of instruction is 1, 1, 4, and 2, respectively. Assume that the processor has a 2 GHz clock rate.
 \begin{enumerate}[(a)]
     \item By how much must we improve the CPI of FP instructions if we want the program to run two times faster?
+    \\
+    \textbf{Answer:}
+    \\
+    Time = (FP * CPI + INT * CPI + L/S * CPI + Branch * CPI) / Clock Rate
+    \begin{center}
+        Using the equation: 
+        Time = (59 + 110 + 320 + 32) / 2E9 = 0.256 seconds\\[0.15in]
+        CPI = (256 - 32 - 320 - 110) / 50 = -4.12
+    \end{center}
+    \textbf{Since the CPI cannot be negative, we cannot improve the CPI of FP instructions to make the program run two times faster.}
+    
     \item By how much must we improve the CPI of L/S instructions if we want the program to run two times faster?
+    \\
+    \textbf{Answer:}
+    \\
+    Use the same process in part (a) but with L/S instructions instead of FP instructions.
+    \begin{center}
+        Time = ((50 + 110 + 80 * CPI + 32) * 10E6) / (2 * 10E9)\\[0.15in]
+        CPI = (256 - 110 - 50 - 32) / 80 = 0.8
+    \end{center}
+    \textbf{The CPI of L/S instructions must be improved by 0.8 to make the program run two times faster.}
+    
     \item By how much is the execution time of the program improved if the CPI of INT and FP instructions is reduced by 40\% and the CPI of L/S and Branch is reduced by 30\%?
-
+    \\
+    \textbf{Answer:}
+    \\
+    \begin{center}
+        Time = (50 * 0.6 + 110 * 0.6 + 80 * 2.8 + 16 * 1.4) * 10E6 / 2E9 = 0.1712 seconds\\
+        Improved Time = 0.256 / 0.1712 = 1.495 \\[0.25in]
+    \end{center}
+    \textbf{The time is improved by 1.495 times.}
 \end{enumerate}
 
 
@@ -225,5 +308,35 @@ Assume a program requires the execution of 50 × 106 FP instructions, 110 × 106
 When a program is adapted to run on multiple processors in a multiprocessor system, the execution time on each processor is comprised of computing time and the overhead time required for locked critical sections and/or to send data from one processor to another.
 \\
 Assume a program requires t = 100 s of execution time on one processor. When run p processors, each processor requires t/p s, as well as an additional 4 s of overhead, irrespective of the number of processors. Compute the per-processor execution time for 2, 4, 8, 16, 32, 64, and 128 processors. For each case, list the corresponding speedup relative to a single processor and the ratio between actual speedup versus ideal speedup (speedup if there was no overhead).
-
+\\
+\textbf{Answer:}
+\\
+\textbf{Processor 2} time = 100 / 2 + 4 = 54 seconds\\
+Speed up = 100 / 54 = 1.85\\
+Ideal Speed up = 100 / 50 = 2\\
+Ratio = 1.85 / 2 = 0.925\\[0.15in]
+\textbf{Processor 4} time = 100 / 4 + 4 = 29 seconds\\
+Speed up = 100 / 29 = 3.45\\
+Ideal Speed up = 100 / 25 = 4\\
+Ratio = 3.45 / 4 = 0.8625\\[0.15in]
+\textbf{Processor 8} time = 100 / 8 + 4 = 16.5 seconds\\
+Speed up = 100 / 16.5 = 6.06\\
+Ideal Speed up = 100 / 12.5 = 8\\
+Ratio = 6.06 / 8 = 0.7575\\[0.15in]
+\textbf{Processor 16} time = 100 / 16 + 4 = 10.25 seconds\\
+Speed up = 100 / 10.25 = 9.75\\
+Ideal Speed up = 100 / 6.25 = 16\\
+Ratio = 9.75 / 16 = 0.6094\\[0.15in]
+\textbf{Processor 32} time = 100 / 32 + 4 = 7.125 seconds\\
+Speed up = 100 / 7.125 = 14.04\\
+Ideal Speed up = 100 / 3.125 = 32\\
+Ratio = 14.04 / 32 = 0.4388\\[0.15in]
+\textbf{Processor 64} time = 100 / 64 + 4 = 5.5625 seconds\\
+Speed up = 100 / 5.5625 = 17.97\\
+Ideal Speed up = 100 / 1.5625 = 64\\
+Ratio = 17.97 / 64 = 0.2804\\[0.15in]
+\textbf{Processor 128} time = 100 / 128 + 4 = 4.781 seconds\\
+Speed up = 100 / 4.781 = 20.9\\
+Ideal Speed up = 100 / 0.781 = 128\\
+Ratio = 20.9 / 128 = 0.1633\\[0.15in]
 \end{document}
