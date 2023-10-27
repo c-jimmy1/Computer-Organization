@@ -9,8 +9,12 @@ void parseFile(const char *infileName) {
 
     if (infile == NULL) {
         printf("Error: Cannot open file %s\n", infileName);
-        return 1;
+        exit(1);
     }
+
+    char file_string[100];
+    fgets(file_string, 100, infile);
+    printf("%s", file_string);
 
     fclose(infile);
 }
