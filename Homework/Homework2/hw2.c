@@ -4,6 +4,10 @@
 #include <stdbool.h>
 
 
+void translatetoMIPS(file_string) {
+    
+}
+
 void parseFile(const char *infileName) {
     FILE *infile = fopen(infileName, "r");
 
@@ -12,15 +16,17 @@ void parseFile(const char *infileName) {
         exit(1);
     }
 
-    char file_string[100];
-    fgets(file_string, 100, infile);
-    printf("%s", file_string);
+    char file_string[128];
+    
+    while (fgets(file_string, 128, infile) != NULL) {
+        // File_string is each line and is passed into the translatetoMIPS function to be translated
+        translatetoMIPS(file_string);
+    }
 
     fclose(infile);
 }
 
 int main(int argc, char *argv[]) {
-
     // If the number of arguments is less than 2, print usage and exit
     if (argc < 2) {
         printf("Usage: %s <input file>\n", argv[0]);
