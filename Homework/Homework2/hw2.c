@@ -29,6 +29,15 @@ int checkFree(CharIntPair c_variables[], int size) {
     return -1;
 }
 
+int findIndex(CharIntPair c_variables[], int size, char target) {
+    for (int i = 0; i < 8; i++) {
+        if (c_variables[i].variable == target) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 // Function to declare a variable and assign it a value in the saved registers
 void declareVariable(CharIntPair c_variables[8], char variable, int value) {
     // Loop through the array of structs and check if the variable has been declared
@@ -49,7 +58,7 @@ void translatetoMIPS(char *file_string, CharIntPair c_variables[8]) {
         temporary_registers[i].variable = ' ';
     }
     int current_temp_register = 0;
-    
+
     printf("# %s", file_string);
 
     int i = 0;
@@ -65,16 +74,34 @@ void translatetoMIPS(char *file_string, CharIntPair c_variables[8]) {
 
     // The first letter should always be a letter, and the second should always be an equals sign
     if (isalpha(file_string[0]) != 0 && file_string[1] == '=') {
-        /* If the third character is a number, then it is a VARIABLE DECLARATION. 
-        Assume that a const can only be the second operand */
-        if (isalpha(file_string[2]) == 0) {
-            int index = 2; // Start parsing from index 2
+        // If the third character is a number, then it is a VARIABLE DECLARATION. 
+        if (isdigit(file_string[2]) != 0 || file_string[2] == '-') {
+            int index = 2;
             int result = 0;
+            int multiplier = 1;
+            // If it is negative, then the multiplier is -1 to make the result negative
+            if (file_string[2] == '-') {
+                index++;
+                multiplier = -1;
+            }
             while (file_string[index] != ';') {
                 result = result * 10 + (file_string[index] - '0');
                 index++;
             }
+            result = result * multiplier;
             declareVariable(c_variables, file_string[0], result);
+        }
+        // Else loop through the string and translate the expression
+        else {
+            int index = 2;
+            while (file_string[index] != ';') {
+                // If the character is a letter, then it is a variable
+                if (isalpha(file_string[index]) != 0) {
+                    if (findIndex(c_variables, 8, file_string[index]) != -1) {
+                        
+                    }
+                }
+            }
         }
     }
 }
