@@ -35,20 +35,32 @@ int isNumeric(const char *str) {
 }
 
 void declareVariable(char *line[], char *c_variables[]) {
-    if (isalpha(*line[0]) != 0 && *line[1] == '=' && isNumeric(line[2])) {
-        int index = checkFree(c_variables, 8);
-        c_variables[index] = line[0];
-        printf("li $s%d, %s\n", index, line[2]);
-    }
+    int index = checkFree(c_variables, 8);
+    c_variables[index] = line[0];
+    printf("li $s%d, %s\n", index, line[2]);
 }
 
-void translatetoMIPS(char *line[], char *c_variables[]) {
+
+void translatetoMIPS(char *line[], char *c_variables[], int line_size) {
     // Initialize temp_registers array to NULL
     char *temp_registers[10];
     for (int i = 0; i < 10; i++) {
         temp_registers[i] = NULL;
     }
-    declareVariable(line, c_variables);
+    if (isalpha(*line[0]) != 0 && *line[1] == '=') {
+        if (isNumeric(line[2])) {
+            declareVariable(line, c_variables);
+        }
+        else {
+            int index = 2; // Start at index 2 to skip the variable name and the equal sign
+            while (line[index] != NULL) {
+                if (line_size == 5) {
+                    printf("%saa", line[index]);
+                }
+                    index++;
+                }
+        }
+    }
 }
 
 // Function to print the original C code line as a comment
@@ -95,7 +107,8 @@ void parseFile(const char *infileName) {
             token = strtok(NULL, " "); // Move to the next token
         }
         
-        translatetoMIPS(line, c_variables);
+        translatetoMIPS(line, c_variables, tokenCount);
+          
     }
 
     fclose(infile);
