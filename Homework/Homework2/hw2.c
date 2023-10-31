@@ -80,6 +80,44 @@ void appendToCurrEquation(char **curr_equation, char character) {
 void translateAddTemp(char *curr_equation, CharIntPair c_variables[8], CharIntPair temporary_registers[10], int temp_Register) {
     char delim = '+'; // Delimiter to split the string
     char *token = strtok(curr_equation, &delim);
+    
+    char *elements[2]; 
+
+    int index = 0;
+    while (token != NULL) {
+        elements[index] = token;
+        index++;
+        token = strtok(NULL, &delim);
+    }
+
+    int value = 0;
+
+    if (isalpha(*elements[0]) != 0) {
+        if (isalpha(*elements[1]) != 0) {
+            int index1 = findIndex(c_variables, 8, *elements[0]);
+            int index2 = findIndex(c_variables, 8, *elements[1]);
+            value = c_variables[index1].value + c_variables[index2].value;
+            printf("add $t%d, $s%d, $s%d\n", temp_Register, index1, index2);
+        }
+        else if (isdigit(*elements[1]) != 0) {
+            int index1 = findIndex(c_variables, 8, *elements[0]);
+            value = c_variables[index1].value + atoi(elements[1]);
+            printf("addi $t%d, $s%d, %d\n", temp_Register, index1, atoi(elements[1]));
+        }
+    }
+    else if (isdigit(*elements[0]) != 0) {
+        if (isalpha(*elements[1]) != 0) {
+            int index2 = findIndex(c_variables, 8, *elements[1]);
+            value = c_variables[index2].value + atoi(elements[0]);
+            printf("addi $t%d, $s%d, %d\n", temp_Register, index2, atoi(elements[0]));
+        }
+        else if (isdigit(*elements[1]) != 0) {
+            value = atoi(elements[0]) + atoi(elements[1]);
+            printf("addi $t%d, $s%d, %d\n", temp_Register, atoi(elements[0]), atoi(elements[1]));
+        }
+    }
+    temporary_registers[temp_Register].variable = 't';
+    temporary_registers[temp_Register].value = value;
 }
 
 void translatetoMIPS(char *file_string, CharIntPair c_variables[8]) {
@@ -89,7 +127,6 @@ void translatetoMIPS(char *file_string, CharIntPair c_variables[8]) {
         temporary_registers[i].variable = ' ';
         temporary_registers[i].value = 0;
     }
-    int current_temp_register = 0;
     char *newline = strchr(file_string, '\n');
     if (newline != NULL) {
         *newline = '\0';
