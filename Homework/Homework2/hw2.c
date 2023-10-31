@@ -30,7 +30,7 @@ int checkFree(CharIntPair c_variables[], int size) {
 }
 
 int findIndex(CharIntPair c_variables[], int size, char target) {
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < size; i++) {
         if (c_variables[i].variable == target) {
             return i;
         }
@@ -51,15 +51,50 @@ void declareVariable(CharIntPair c_variables[8], char variable, int value) {
     printf("li $s%d, %d\n", index, value);
 }
 
+void appendToCurrEquation(char **curr_equation, char character) {
+    // Find the current length of the curr_equation
+    size_t curr_length = *curr_equation ? strlen(*curr_equation) : 0;
+    
+    // Allocate memory for the new curr_equation
+    char *new_equation = (char *)malloc(curr_length + 2); // +2 for the new character and null terminator
+
+    if (!new_equation) {
+        // Handle memory allocation error
+        fprintf(stderr, "Memory allocation failed.");
+        exit(1);
+    }
+
+    // Copy the existing curr_equation, if it exists
+    if (*curr_equation) {
+        strcpy(new_equation, *curr_equation);
+    }
+
+    // Append the new character to curr_equation
+    new_equation[curr_length] = character;
+    new_equation[curr_length + 1] = '\0';
+
+    // Update curr_equation pointer to the new string
+    *curr_equation = new_equation;
+}
+
+void translateAddTemp(char *curr_equation, CharIntPair c_variables[8], CharIntPair temporary_registers[10], int temp_Register) {
+    char delim = '+'; // Delimiter to split the string
+    char *token = strtok(curr_equation, &delim);
+}
+
 void translatetoMIPS(char *file_string, CharIntPair c_variables[8]) {
     // Intialize an array of structs to hold the temporary registers
     CharIntPair temporary_registers[10];
     for (int i = 0; i < 8; i++) {
         temporary_registers[i].variable = ' ';
+        temporary_registers[i].value = 0;
     }
     int current_temp_register = 0;
-
-    printf("# %s", file_string);
+    char *newline = strchr(file_string, '\n');
+    if (newline != NULL) {
+        *newline = '\0';
+    }
+    printf("# %s\n", file_string);
 
     int i = 0;
     // Removing all spaces from the string to make it easier to parse
@@ -94,14 +129,63 @@ void translatetoMIPS(char *file_string, CharIntPair c_variables[8]) {
         // Else loop through the string and translate the expression
         else {
             int index = 2;
+            char *curr_equation = NULL;
             while (file_string[index] != ';') {
                 // If the character is a letter, then it is a variable
                 if (isalpha(file_string[index]) != 0) {
+                    // Check the variable is in the saved registers
                     if (findIndex(c_variables, 8, file_string[index]) != -1) {
-                        
+                        // If the equation is empty, then it is the first variable in the equation (lhs of the operator). If not, then if the last char is a operator, then append the variable (rhs of the operator)
+                        if (curr_equation == NULL || (curr_equation != NULL && (curr_equation[strlen(curr_equation) - 1] == '+' || curr_equation[strlen(curr_equation) - 1] == '-' 
+                            || curr_equation[strlen(curr_equation) - 1] == '*' || curr_equation[strlen(curr_equation) - 1] == '/' || curr_equation[strlen(curr_equation) - 1] == '%'))) {
+                            appendToCurrEquation(&curr_equation, file_string[index]);
+                        }
                     }
                 }
+                // If the character is an operand
+                else if (file_string[index] == '+' || file_string[index] == '-' || file_string[index] == '*' || file_string[index] == '/' || file_string[index] == '%') {
+                    // Check if the equation is not empty, and if the last char is a digit or a letter. If yes, then append the operand to the equation
+                    int hasOtherOperands = 0;
+                    for (size_t i = 0; i < strlen(curr_equation); i++) {
+                        if (curr_equation[i] == '+' || curr_equation[i] == '-' || curr_equation[i] == '*' || curr_equation[i] == '/' || curr_equation[i] == '%') {
+                            hasOtherOperands = 1; 
+                            break;
+                        }
+                    }
+                    if (curr_equation != NULL && !hasOtherOperands && (isalpha(curr_equation[strlen(curr_equation) - 1]) != 0 || isdigit(curr_equation[strlen(curr_equation) - 1]) != 0)) {
+                        appendToCurrEquation(&curr_equation, file_string[index]);
+                    }
+                    else {
+                        int temp_Register = checkFree(temporary_registers, 10);
+                        if (strchr(curr_equation, '+') != NULL) {
+                            translateAddTemp(curr_equation, c_variables, temporary_registers, temp_Register);
+                        }
+                        // else if (strchr(curr_equation, '-') != NULL) {
+
+                        // }
+                        // else if (strchr(curr_equation, '*') != NULL) {
+
+                        // }
+                        // else if (strchr(curr_equation, '/') != NULL) {
+
+                        // }
+                        // else if (strchr(curr_equation, '%') != NULL) {
+
+                        // }
+                    }
+                }
+                // If the character is a digit
+                else if (isdigit(file_string[index]) != 0) {
+                    // Check if the last char is a digit or a operand. If either one, then append the digit to the equation
+                    if (isdigit(curr_equation[strlen(curr_equation) - 1]) != 0 || curr_equation[strlen(curr_equation) - 1] == '+' || curr_equation[strlen(curr_equation) - 1] == '-' 
+                        || curr_equation[strlen(curr_equation) - 1] == '*' || curr_equation[strlen(curr_equation) - 1] == '/' || curr_equation[strlen(curr_equation) - 1] == '%') {
+                        appendToCurrEquation(&curr_equation, file_string[index]);
+                    }
+                }
+                // printf("Current operation: %s\n", curr_equation);
+                index++;
             }
+            free(curr_equation);
         }
     }
 }
@@ -124,7 +208,6 @@ void parseFile(const char *infileName) {
         // File_string is each line and is passed into the translatetoMIPS function to be translated
         translatetoMIPS(file_string, c_variables);
     }
-
     // printCharIntPairs(c_variables);
 
     fclose(infile);
