@@ -167,6 +167,7 @@ void translatetoMIPS(char *file_string, CharIntPair c_variables[8]) {
         else {
             int index = 2;
             char *curr_equation = NULL;
+            bool isNegative = false;
             while (file_string[index] != ';') {
                 // If the character is a letter, then it is a variable
                 if (isalpha(file_string[index]) != 0) {
@@ -189,6 +190,10 @@ void translatetoMIPS(char *file_string, CharIntPair c_variables[8]) {
                             break;
                         }
                     }
+                    // If the curr is a negative sign, then check if the previous char is a minus operand. If yes, then the current is the dash for the negative number
+                    if ((file_string[index-1] == '+' || file_string[index-1] == '-' || file_string[index-1] == '*' || file_string[index-1] == '/' || file_string[index-1] == '%') && file_string[index] == '-' && isdigit(file_string[index + 1]) != 0) {
+                        isNegative = true;
+                    }
                     if (curr_equation != NULL && !hasOtherOperands && (isalpha(curr_equation[strlen(curr_equation) - 1]) != 0 || isdigit(curr_equation[strlen(curr_equation) - 1]) != 0)) {
                         appendToCurrEquation(&curr_equation, file_string[index]);
                     }
@@ -196,6 +201,11 @@ void translatetoMIPS(char *file_string, CharIntPair c_variables[8]) {
                         int temp_Register = checkFree(temporary_registers, 10);
                         if (strchr(curr_equation, '+') != NULL) {
                             translateAddTemp(curr_equation, c_variables, temporary_registers, temp_Register);
+                            free(curr_equation);
+                            curr_equation = NULL;
+                            // | represents the temporary register
+                            appendToCurrEquation(&curr_equation, '|');
+                            appendToCurrEquation(&curr_equation, file_string[index]);
                         }
                         // else if (strchr(curr_equation, '-') != NULL) {
 
@@ -216,10 +226,17 @@ void translatetoMIPS(char *file_string, CharIntPair c_variables[8]) {
                     // Check if the last char is a digit or a operand. If either one, then append the digit to the equation
                     if (isdigit(curr_equation[strlen(curr_equation) - 1]) != 0 || curr_equation[strlen(curr_equation) - 1] == '+' || curr_equation[strlen(curr_equation) - 1] == '-' 
                         || curr_equation[strlen(curr_equation) - 1] == '*' || curr_equation[strlen(curr_equation) - 1] == '/' || curr_equation[strlen(curr_equation) - 1] == '%') {
-                        appendToCurrEquation(&curr_equation, file_string[index]);
+                        if (!isNegative) {
+                            appendToCurrEquation(&curr_equation, file_string[index]);
+                        }
+                        else {
+                            appendToCurrEquation(&curr_equation, '-');
+                            appendToCurrEquation(&curr_equation, file_string[index]);
+                            isNegative = false;
+                        }
                     }
                 }
-                // printf("Current operation: %s\n", curr_equation);
+                printf("Current operation: %s\n", curr_equation);
                 index++;
             }
             free(curr_equation);
