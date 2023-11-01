@@ -14,23 +14,29 @@ int checkFree(char *array[], int size) {
     return -1;
 }
 
+int findIndex(char *c_variables[], int size, char target) {
+    for (int i = 0; i < size; i++) {
+        if (*c_variables[i] == target) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 int isNumeric(const char *str) {
     char *endptr;  // Pointer to the character that caused conversion to stop
     errno = 0;     // Reset errno for error checking
-
     long num = strtol(str, &endptr, 10);  // Base 10 for decimal numbers
-
+    
     // Check for conversion errors
     if ((errno == ERANGE && (num == LONG_MAX || num == LONG_MIN)) ||
         (errno != 0 && num == 0)) {
         return 0;  // Conversion failed
     }
-
     // Check if the entire string was consumed by strtol
     if (*endptr != '\0') {
         return 0;  // Not a valid integer (e.g., contains non-numeric characters)
     }
-
     return 1;  // Valid integer
 }
 
@@ -40,6 +46,94 @@ void declareVariable(char *line[], char *c_variables[]) {
     printf("li $s%d, %s\n", index, line[2]);
 }
 
+int findPowers(int number, int *powers) {
+    int exponent = 0, size = 0;
+    while (number > 0) {
+        if (number % 2 == 1) {
+            powers[size++] = exponent;
+        }
+        number /= 2;
+        exponent++;
+    }
+    if (number == 0) {
+        return size;
+    }
+    return 0;
+}
+
+// Function to perform single operations, i.e. a = b + c or or a = b / c
+void singleOperation(char *line[], char *c_variables[], char *temp_registers[]) {
+    int indexLeft = 0;
+    int indexRight = 0;
+    int next_avaliable = checkFree(c_variables, 8);
+    c_variables[next_avaliable] = line[0];
+    if (*line[3] == '+') {
+        if (isNumeric(line[4])) {
+            int rightNum = atoi(line[4]);
+            indexLeft = findIndex(c_variables, 8, *line[2]);
+            printf("addi $s%d,$s%d,%d\n", next_avaliable, indexLeft, rightNum);
+        }
+        else {
+            indexLeft = findIndex(c_variables, 8, *line[2]);
+            indexRight = findIndex(c_variables, 8, *line[4]);
+            printf("add $s%d,$s%d,$s%d\n", next_avaliable, indexLeft, indexRight);
+        }
+    }
+    else if (*line[3] == '-') {
+        if (isNumeric(line[4])) {
+            int rightNum = atoi(line[4]);
+            indexLeft = findIndex(c_variables, 8, *line[2]);
+            printf("addi $s%d,$s%d,-%d\n", next_avaliable, indexLeft, rightNum);
+        }
+        else {
+            indexLeft = findIndex(c_variables, 8, *line[2]);
+            indexRight = findIndex(c_variables, 8, *line[4]);
+            printf("sub $s%d,$s%d,$s%d\n", next_avaliable, indexLeft, indexRight);
+        }
+    }
+    else if (*line[3] == '*') {
+        if (isNumeric(line[4])) {
+            indexLeft = findIndex(c_variables, 8, *line[2]);
+            int rightNum = atoi(line[4]);
+            int pow_size = 0;
+            if (rightNum == 1) {
+                int tempindex = checkFree(temp_registers, 10);
+                temp_registers[tempindex] = "t";
+                printf("move $t%d,$s%d\n", tempindex, indexLeft);
+                printf("move $s%d,$t%d\n", next_avaliable, tempindex);
+            }
+            else if (rightNum < 0) {
+                int tempindex = checkFree(temp_registers, 10);
+                temp_registers[tempindex] = "t";
+                printf("move $t%d,$s%d\n", tempindex, indexLeft);
+                printf("sub $s%d,$zero,$t%d\n", next_avaliable, tempindex);
+            }
+            else if (rightNum == 0) {
+                int tempindex = checkFree(temp_registers, 10);
+                temp_registers[tempindex] = "t";
+                printf("mult $t%d,$s%d\n", tempindex, indexLeft);
+                int ansindex = checkFree(temp_registers, 10);
+                temp_registers[ansindex] = "t";
+                printf("mflo $t%d\n", ansindex);
+                printf("li $s%d,0\n", next_avaliable);
+            }
+            else {
+                int *powers = malloc(50 * sizeof(int));
+                //int pow_size = findPowers(*line[4], powers);
+                if (pow_size > 1)
+                for (int i = pow_size-1; i >= 0; i--) {
+                    printf("sll $s%d,$s%d,%d\n", indexLeft, indexLeft, powers[i]);
+                }
+            } 
+        }
+        else {
+            indexLeft = findIndex(c_variables, 8, *line[2]);
+            indexRight = findIndex(c_variables, 8, *line[4]);
+            printf("mult $s%d,$s%d\n", indexLeft, indexRight);
+            printf("mflo $s%d\n", next_avaliable);
+        }
+    }
+}
 
 void translatetoMIPS(char *line[], char *c_variables[], int line_size) {
     // Initialize temp_registers array to NULL
@@ -52,13 +146,10 @@ void translatetoMIPS(char *line[], char *c_variables[], int line_size) {
             declareVariable(line, c_variables);
         }
         else {
-            int index = 2; // Start at index 2 to skip the variable name and the equal sign
-            while (line[index] != NULL) {
-                if (line_size == 5) {
-                    printf("%saa", line[index]);
-                }
-                    index++;
-                }
+            if (line_size == 5) {
+                singleOperation(line, c_variables, temp_registers);
+            }
+
         }
     }
 }
