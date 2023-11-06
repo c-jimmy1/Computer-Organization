@@ -119,10 +119,13 @@ void singleOperation(char *line[], char *c_variables[], char *temp_registers[]) 
             }
             else {
                 int *powers = malloc(50 * sizeof(int));
-                //int pow_size = findPowers(*line[4], powers);
-                if (pow_size > 1)
-                for (int i = pow_size-1; i >= 0; i--) {
-                    printf("sll $s%d,$s%d,%d\n", indexLeft, indexLeft, powers[i]);
+                int pow_size = findPowers(*line[4], powers);
+                // int firstShift = 0;
+                
+                if (pow_size > 0) {
+                    for (int i = pow_size-1; i >= 0; i--) {
+                        printf("sll $s%d,$s%d,%d\n", next_avaliable, indexLeft, powers[i]);
+                    }
                 }
             } 
         }
@@ -132,6 +135,83 @@ void singleOperation(char *line[], char *c_variables[], char *temp_registers[]) 
             printf("mult $s%d,$s%d\n", indexLeft, indexRight);
             printf("mflo $s%d\n", next_avaliable);
         }
+    }
+}
+
+void addOperation(int i, int saved_next_avaliable, int temp_next_avaliable, char prev, char next,
+                char *line[], char *c_variables[], char *temp_registers[], int line_size) {
+    if (line_size == 5) {
+        int indexLeft = 0;
+        int indexRight = 0;
+        int next_avaliable = checkFree(c_variables, 8);
+        if (isNumeric(line[4])) {
+            int rightNum = atoi(line[4]);
+            indexLeft = findIndex(c_variables, 8, *line[2]);
+            printf("addi $s%d,$s%d,%d\n", next_avaliable, indexLeft, rightNum);
+        }
+        else {
+            indexLeft = findIndex(c_variables, 8, *line[2]);
+            indexRight = findIndex(c_variables, 8, *line[4]);
+            printf("add $s%d,$s%d,$s%d\n", next_avaliable, indexLeft, indexRight);
+        }
+    }
+    else {
+        // If it's not the last index, store the result in a temp register
+        if (i+1 != line_size-1) {
+            temp_registers[temp_next_avaliable] = "t";
+            // If it's the first index, we have to use two saved registers
+            if (i == 3) {
+                // If both are variables
+                if (!isNumeric(line[i-1]) && !isNumeric(line[i+1])) {
+                    int indexLeft = findIndex(c_variables, 8, prev);
+                    int indexRight = findIndex(c_variables, 8, next);
+                    printf("add $t%d,$s%d,$s%d\n", temp_next_avaliable, indexLeft, indexRight);
+                }
+                // If only left is variable
+                else if (!isNumeric(line[i-1]) && isNumeric(line[i+1])) {
+                    int indexLeft = findIndex(c_variables, 8, prev);
+                    // note: might need to write $zero for 0 cases
+                    printf("addi $t%d,$s%d,%d\n", temp_next_avaliable, indexLeft, atoi(line[i+1]));
+                }
+            }
+            // If it's not the first index, we can use a saved register and a temp register
+            else {
+                // If it is a variable
+                if (!isNumeric(line[i-1]) && !isNumeric(line[i+1])) {
+                    int indexRight = findIndex(c_variables, 8, next);
+                    printf("add $t%d,$s%d,$s%d\n", temp_next_avaliable, temp_next_avaliable-1, indexRight);
+                }
+                // If is an integer
+                else if (!isNumeric(line[i-1]) && isNumeric(line[i+1])) {
+                    printf("addi $t%d,$t%d,%d\n", temp_next_avaliable, temp_next_avaliable-1, atoi(line[i+1]));
+                }
+            }
+        }
+        // If it's the last index, store the result in a saved register
+        else {
+            if (!isNumeric(line[i-1]) && !isNumeric(line[i+1])) {
+                int indexRight = findIndex(c_variables, 8, next);
+                printf("add $s%d,$t%d,$s%d\n", saved_next_avaliable, temp_next_avaliable-1, indexRight);
+            }
+            // If only right is variable
+            else if (!isNumeric(line[i-1]) && isNumeric(line[i+1])) {
+                printf("addi $s%d,$t%d,%d\n", saved_next_avaliable, temp_next_avaliable-1, atoi(line[i+1]));
+            }
+        }
+    }
+}
+
+void multipleOperations(char *line[], char *c_variables[], char *temp_registers[], int line_size) {
+    char assignment = *line[0];
+    for (int i = 3; i < line_size; i+=2) {
+        int saved_next_avaliable = checkFree(c_variables, 8);
+        int temp_next_avaliable = checkFree(temp_registers, 10);
+        char prev = *line[i-1];
+        char next = *line[i+1];        
+        if (*line[i] == '+') {
+            addOperation(i, saved_next_avaliable, temp_next_avaliable, prev, next, line, c_variables, temp_registers, line_size);
+        }
+
     }
 }
 
@@ -146,10 +226,7 @@ void translatetoMIPS(char *line[], char *c_variables[], int line_size) {
             declareVariable(line, c_variables);
         }
         else {
-            if (line_size == 5) {
-                singleOperation(line, c_variables, temp_registers);
-            }
-
+            multipleOperations(line, c_variables, temp_registers, line_size);
         }
     }
 }
