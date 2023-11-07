@@ -5,6 +5,8 @@
 #include <limits.h>
 #include <ctype.h>
 
+
+// Function to check if the array has a free space, returns the index of the free space
 int checkFree(char *array[], int size) {
     for (int i = 0; i < size; i++) {
         if (array[i] == NULL) {
@@ -14,6 +16,7 @@ int checkFree(char *array[], int size) {
     return -1;
 }
 
+// Function to find the index of a character in an array
 int findIndex(char *c_variables[], int size, char target) {
     for (int i = 0; i < size; i++) {
         if (*c_variables[i] == target) {
@@ -23,6 +26,7 @@ int findIndex(char *c_variables[], int size, char target) {
     return -1;
 }
 
+// Function to check if a string is a valid integer, works for both positive and negative integers
 int isNumeric(const char *str) {
     char *endptr;  // Pointer to the character that caused conversion to stop
     errno = 0;     // Reset errno for error checking
@@ -40,12 +44,14 @@ int isNumeric(const char *str) {
     return 1;  // Valid integer
 }
 
+// Function to declare a variable in MIPS (li)
 void declareVariable(char *line[], char *c_variables[]) {
     int index = checkFree(c_variables, 8);
     c_variables[index] = line[0];
     printf("li $s%d,%s\n", index, line[2]);
 }
 
+// Function to find the powers of 2 in a number
 int findPowers(int number, int *powers) {
     int exponent = 0, size = 0;
     while (number > 0) {
@@ -61,22 +67,27 @@ int findPowers(int number, int *powers) {
     return 0;
 }
 
+// Function to recreate the MIPS add function, called in multipleOperations
 void addOperation(int i, int saved_next_avaliable, int temp_next_avaliable, char prev, char next,
                 char *line[], char *c_variables[], char *temp_registers[], int line_size) {
+    // If the line is only one operation (e.g. a = b + 1)
     if (line_size == 5) {
         int indexLeft = 0;
         int indexRight = 0;
+        // If the right side is a number
         if (isNumeric(line[4])) {
             int rightNum = atoi(line[4]);
             indexLeft = findIndex(c_variables, 8, *line[2]);
             printf("addi $s%d,$s%d,%d\n", saved_next_avaliable, indexLeft, rightNum);
         }
+        // If the right side is a variable
         else {
             indexLeft = findIndex(c_variables, 8, *line[2]);
             indexRight = findIndex(c_variables, 8, *line[4]);
             printf("add $s%d,$s%d,$s%d\n", saved_next_avaliable, indexLeft, indexRight);
         }
     }
+    // If there are multiple operations (e.g. a = b + c + d)
     else {
         // If it's not the last index, store the result in a temp register
         if (i+1 != line_size-1) {
@@ -133,16 +144,20 @@ void addOperation(int i, int saved_next_avaliable, int temp_next_avaliable, char
     }
 }
 
+// Function to recreate the MIPS sub function, called in multipleOperations
 void subOperation(int i, int saved_next_avaliable, int temp_next_avaliable, char prev, char next,
                 char *line[], char *c_variables[], char *temp_registers[], int line_size) {
+    // If there is only one operation
     if (line_size == 5) {
         int indexLeft = 0;
         int indexRight = 0;
+        // If the right side is a number use addi for constants
         if (isNumeric(line[4])) {
             int rightNum = atoi(line[4]);
             indexLeft = findIndex(c_variables, 8, *line[2]);
             printf("addi $s%d,$s%d,-%d\n", saved_next_avaliable, indexLeft, rightNum);
         }
+        // If the right side is a variable use sub
         else {
             indexLeft = findIndex(c_variables, 8, *line[2]);
             indexRight = findIndex(c_variables, 8, *line[4]);
@@ -167,28 +182,36 @@ void subOperation(int i, int saved_next_avaliable, int temp_next_avaliable, char
                     printf("addi $t%d,$s%d,-%d\n", temp_next_avaliable, indexLeft, atoi(line[i+1]));
                 }
             }
+            // Rest of the indexes, we can use a saved register and a temp register
             else {
+                // If both are variables
                 if (!isNumeric(line[i-1]) && !isNumeric(line[i+1])) {
                     int indexRight = findIndex(c_variables, 8, next);
                     printf("sub $t%d,$t%d,$s%d\n", temp_next_avaliable, temp_next_avaliable-1, indexRight);
                 }
+                // If second one is a number
                 else if (!isNumeric(line[i-1]) && isNumeric(line[i+1])) {
                     printf("addi $t%d,$t%d,-%d\n", temp_next_avaliable, temp_next_avaliable-1, atoi(line[i+1]));
                 }
+                // If first one is a number it doesn't matter, we just need to subtract from temp
                 else if (isNumeric(line[i-1]) && !isNumeric(line[i+1])) {
                     int indexRight = findIndex(c_variables, 8, next);
                     printf("sub $t%d,$t%d,s%d\n", temp_next_avaliable, temp_next_avaliable-1, indexRight);
                 }
             }
         }
+        // If it's the last index, store the final result in a saved register
         else {
+            // If both are variables
             if (!isNumeric(line[i-1]) && !isNumeric(line[i+1])) {
                 int indexRight = findIndex(c_variables, 8, next);
                 printf("sub $s%d,$t%d,$s%d\n", saved_next_avaliable, temp_next_avaliable-1, indexRight);
             }
+            // If second one is a number
             else if (!isNumeric(line[i-1]) && isNumeric(line[i+1])) {
                 printf("addi $s%d,$t%d,-%d\n", saved_next_avaliable, temp_next_avaliable-1, atoi(line[i+1]));
             }
+            // If first one is a number it doesn't matter, we just need to subtract from temp
             else if (isNumeric(line[i-1]) && !isNumeric(line[i+1])) {
                 int indexRight = findIndex(c_variables, 8, next);
                 printf("sub $s%d,$t%d,s%d\n", saved_next_avaliable, temp_next_avaliable-1, indexRight);
@@ -197,27 +220,32 @@ void subOperation(int i, int saved_next_avaliable, int temp_next_avaliable, char
     }
 }
 
+// Function to recreate the MIPS mult function, called in multipleOperations
 void multOperation(int i, int saved_next_avaliable, int temp_next_avaliable, char prev, char next,
                 char *line[], char *c_variables[], char *temp_registers[], int line_size) {
     // If there is only one operation
     if (line_size == 5) {
         int indexLeft = 0;
         int indexRight = 0;
+        // If the right side is a number
         if (isNumeric(line[4])) {
             indexLeft = findIndex(c_variables, 8, *line[2]);
             int rightNum = atoi(line[4]);
             int pow_size = 0;
+            // If the number is 1, we can just move the left side to the saved register (edge case)
             if (rightNum == 1) {
                 temp_registers[temp_next_avaliable] = "t";
                 printf("move $t%d,$s%d\n", temp_next_avaliable, indexLeft);
                 printf("move $s%d,$t%d\n", saved_next_avaliable, temp_next_avaliable);
             }   
+            // If the number is -1, we can subtract from a zero (edge case)
             else if (rightNum == -1) {
                 int tempindex = checkFree(temp_registers, 10);
                 temp_registers[temp_next_avaliable] = "t";
                 printf("move $t%d,$s%d\n", temp_next_avaliable, indexLeft);
                 printf("sub $s%d,$zero,$t%d\n", saved_next_avaliable, tempindex);
             }
+            // If the number is 0, we can just move 0 to the saved register (edge case)
             else if (rightNum == 0) {
                 temp_registers[temp_next_avaliable] = "t";
                 printf("mult $t%d,$s%d\n", temp_next_avaliable, indexLeft);
@@ -226,13 +254,17 @@ void multOperation(int i, int saved_next_avaliable, int temp_next_avaliable, cha
                 printf("mflo $t%d\n", ansindex);
                 printf("li $s%d,0\n", saved_next_avaliable);
             }
+            // If the number is not 0, 1, or -1, we have to calculate the powers of 2 in the number
             else {
                 int *powers = malloc(50 * sizeof(int));
+                // If the number is negative, we have to convert it to positive to get the exponents
                 int num_to_convert = abs(rightNum);
+                // Return is the size of the powers array so we can iterate through it
                 pow_size = findPowers(num_to_convert, powers);
-                                
+                // If there is at least one power of 2 in the number
                 if (pow_size > 0) {
                     int target_temp = 0;
+                    // Loop through the powers backwards i.e. 5, 3, 2, 0
                     for (int i = pow_size-1; i >= 0; i--) {
                         // If it's the first index, we have to place in a target register via move
                         if (i == pow_size-1) {
@@ -242,8 +274,10 @@ void multOperation(int i, int saved_next_avaliable, int temp_next_avaliable, cha
                             temp_registers[target_temp] = "t";
                             printf("move $t%d,$t%d\n", target_temp, temp_next_avaliable);
                         }
+                        // If it's any other index in the pow arr  
                         else {
                             temp_registers[temp_next_avaliable] = "t";
+                            // If the power is 0, we can just add the original number to the target register
                             if (powers[i] == 0) {
                                 printf("add $t%d,$t%d,$s%d\n", target_temp, target_temp, indexLeft);
                             }
@@ -251,7 +285,9 @@ void multOperation(int i, int saved_next_avaliable, int temp_next_avaliable, cha
                                 printf("sll $t%d,$s%d,%d\n", temp_next_avaliable, indexLeft, powers[i]);
                                 printf("add $t%d,$t%d,$t%d\n", target_temp, target_temp, temp_next_avaliable);
                             }
-
+                            
+                            /* If it's the last index, we have to move the target register to the saved register
+                               If it is negative you use move instead of sub */
                             if (i == 0 && rightNum < 0) {
                                 printf("sub $s%d,$zero,$t%d\n", saved_next_avaliable, target_temp);
                             }
@@ -263,11 +299,22 @@ void multOperation(int i, int saved_next_avaliable, int temp_next_avaliable, cha
                 }
             } 
         }
+        // If the right side is a variable
         else {
             indexLeft = findIndex(c_variables, 8, *line[2]);
             indexRight = findIndex(c_variables, 8, *line[4]);
             printf("mult $s%d,$s%d\n", indexLeft, indexRight);
             printf("mflo $s%d\n", saved_next_avaliable);
+        }
+    }
+    else {
+        // If it the first iteration
+        if (i+1 != line_size-1) {
+            temp_registers[temp_next_avaliable] = "t";
+            // If it is the first index, we have to calc two saved registers
+            if (i == 3) {
+                
+            }
         }
     }
 }
