@@ -197,54 +197,9 @@ void subOperation(int i, int saved_next_avaliable, int temp_next_avaliable, char
     }
 }
 
-// else if (*line[3] == '*') {
-//     if (isNumeric(line[4])) {
-//         indexLeft = findIndex(c_variables, 8, *line[2]);
-//         int rightNum = atoi(line[4]);
-//         int pow_size = 0;
-//         if (rightNum == 1) {
-//             int tempindex = checkFree(temp_registers, 10);
-//             temp_registers[tempindex] = "t";
-//             printf("move $t%d,$s%d\n", tempindex, indexLeft);
-//             printf("move $s%d,$t%d\n", next_avaliable, tempindex);
-//         }
-//         else if (rightNum < 0) {
-//             int tempindex = checkFree(temp_registers, 10);
-//             temp_registers[tempindex] = "t";
-//             printf("move $t%d,$s%d\n", tempindex, indexLeft);
-//             printf("sub $s%d,$zero,$t%d\n", next_avaliable, tempindex);
-//         }
-//         else if (rightNum == 0) {
-//             int tempindex = checkFree(temp_registers, 10);
-//             temp_registers[tempindex] = "t";
-//             printf("mult $t%d,$s%d\n", tempindex, indexLeft);
-//             int ansindex = checkFree(temp_registers, 10);
-//             temp_registers[ansindex] = "t";
-//             printf("mflo $t%d\n", ansindex);
-//             printf("li $s%d,0\n", next_avaliable);
-//         }
-//         else {
-//             int *powers = malloc(50 * sizeof(int));
-//             int pow_size = findPowers(*line[4], powers);
-//             // int firstShift = 0;
-            
-//             if (pow_size > 0) {
-//                 for (int i = pow_size-1; i >= 0; i--) {
-//                     printf("sll $s%d,$s%d,%d\n", next_avaliable, indexLeft, powers[i]);
-//                 }
-//             }
-//         } 
-//     }
-//     else {
-//         indexLeft = findIndex(c_variables, 8, *line[2]);
-//         indexRight = findIndex(c_variables, 8, *line[4]);
-//         printf("mult $s%d,$s%d\n", indexLeft, indexRight);
-//         printf("mflo $s%d\n", next_avaliable);
-//     }
-// }
-
 void multOperation(int i, int saved_next_avaliable, int temp_next_avaliable, char prev, char next,
                 char *line[], char *c_variables[], char *temp_registers[], int line_size) {
+    // If there is only one operation
     if (line_size == 5) {
         int indexLeft = 0;
         int indexRight = 0;
@@ -289,12 +244,12 @@ void multOperation(int i, int saved_next_avaliable, int temp_next_avaliable, cha
                         }
                         else {
                             temp_registers[temp_next_avaliable] = "t";
-                            printf("sll $t%d,$s%d,%d\n", temp_next_avaliable, indexLeft, powers[i]);
                             if (powers[i] == 0) {
                                 printf("add $t%d,$t%d,$s%d\n", target_temp, target_temp, indexLeft);
                             }
                             else {
                                 printf("add $t%d,$t%d,$t%d\n", target_temp, target_temp, temp_next_avaliable);
+                                printf("sll $t%d,$s%d,%d\n", temp_next_avaliable, indexLeft, powers[i]);
                             }
 
                             if (i == 0 && rightNum < 0) {
