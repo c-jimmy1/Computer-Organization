@@ -211,7 +211,7 @@ void multOperation(int i, int saved_next_avaliable, int temp_next_avaliable, cha
                 temp_registers[temp_next_avaliable] = "t";
                 printf("move $t%d,$s%d\n", temp_next_avaliable, indexLeft);
                 printf("move $s%d,$t%d\n", saved_next_avaliable, temp_next_avaliable);
-            }
+            }   
             else if (rightNum == -1) {
                 int tempindex = checkFree(temp_registers, 10);
                 temp_registers[temp_next_avaliable] = "t";
@@ -248,8 +248,8 @@ void multOperation(int i, int saved_next_avaliable, int temp_next_avaliable, cha
                                 printf("add $t%d,$t%d,$s%d\n", target_temp, target_temp, indexLeft);
                             }
                             else {
-                                printf("add $t%d,$t%d,$t%d\n", target_temp, target_temp, temp_next_avaliable);
                                 printf("sll $t%d,$s%d,%d\n", temp_next_avaliable, indexLeft, powers[i]);
+                                printf("add $t%d,$t%d,$t%d\n", target_temp, target_temp, temp_next_avaliable);
                             }
 
                             if (i == 0 && rightNum < 0) {
@@ -291,12 +291,7 @@ void multipleOperations(char *line[], char *c_variables[], char *temp_registers[
     }
 }
 
-void translatetoMIPS(char *line[], char *c_variables[], int line_size) {
-    // Initialize temp_registers array to NULL
-    char *temp_registers[10];
-    for (int i = 0; i < 10; i++) {
-        temp_registers[i] = NULL;
-    }
+void translatetoMIPS(char *line[], char *c_variables[], char *temp_registers[], int line_size) {
     if (isalpha(*line[0]) != 0 && *line[1] == '=') {
         if (isNumeric(line[2])) {
             declareVariable(line, c_variables);
@@ -332,6 +327,12 @@ void parseFile(const char *infileName) {
         c_variables[i] = NULL;
     }
 
+    // Initialize temp_registers array to NULL
+    char *temp_registers[10];
+    for (int i = 0; i < 10; i++) {
+        temp_registers[i] = NULL;
+    }
+
     // Read each line of the file using fgets, and tokenize the line by space, and convert the tokens to an Array
     while (fgets(line_string, 128, infile) != NULL) {        
         printOriginal(line_string);
@@ -350,7 +351,7 @@ void parseFile(const char *infileName) {
             tokenCount++;
             token = strtok(NULL, " "); // Move to the next token
         }
-        translatetoMIPS(line, c_variables, tokenCount); 
+        translatetoMIPS(line, c_variables, temp_registers, tokenCount); 
     }
 
     fclose(infile);
