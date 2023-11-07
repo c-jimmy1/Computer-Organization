@@ -274,7 +274,7 @@ void multOperation(int i, int saved_next_avaliable, int temp_next_avaliable, cha
             else {
                 int *powers = malloc(50 * sizeof(int));
                 int num_to_convert = abs(rightNum);
-                int pow_size = findPowers(num_to_convert, powers);
+                pow_size = findPowers(num_to_convert, powers);
                                 
                 if (pow_size > 0) {
                     int target_temp = 0;
@@ -293,17 +293,15 @@ void multOperation(int i, int saved_next_avaliable, int temp_next_avaliable, cha
                             if (powers[i] == 0) {
                                 printf("add $t%d,$t%d,$s%d\n", target_temp, target_temp, indexLeft);
                             }
-                            else{
+                            else {
                                 printf("add $t%d,$t%d,$t%d\n", target_temp, target_temp, temp_next_avaliable);
                             }
 
-                            if (i == 0) {
-                                if (rightNum < 0) {
-                                    printf("sub $s%d,$zero,$t%d\n", saved_next_avaliable, target_temp);
-                                }
-                                else {
-                                    printf("move $s%d,$t%d\n", saved_next_avaliable, target_temp);
-                                }
+                            if (i == 0 && rightNum < 0) {
+                                printf("sub $s%d,$zero,$t%d\n", saved_next_avaliable, target_temp);
+                            }
+                            else if (i == 0 && rightNum > 0) {
+                                printf("move $s%d,$t%d\n", saved_next_avaliable, target_temp);
                             }
                         }
                     }
