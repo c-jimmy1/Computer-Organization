@@ -417,10 +417,20 @@ void constNumDiv(bool putinSaved, int indexLeft, int rightNum, int *Lcount, int 
     // If isPow2 is -1, it is not a power of 2
     int Pow2Exp = getPowerOfTwoExp(abs(rightNum));
     if (rightNum == 1) {
-        printf("move $s%d,$s%d\n", saved_next_avaliable, indexLeft);
+        if (putinSaved) {
+            printf("move $s%d,$s%d\n", saved_next_avaliable, indexLeft);
+        }
+        else {
+            printf("move $t%d,$s%d\n", temp_next_avaliable, indexLeft);
+        }
     }
     else if (rightNum == -1) {
-        printf("sub $s%d,$zero,$s%d\n", saved_next_avaliable, indexLeft);
+        if (putinSaved) {
+            printf("sub $s%d,$zero,$s%d\n", saved_next_avaliable, indexLeft);
+        }
+        else {
+            printf("sub $t%d,$zero,$s%d\n", temp_next_avaliable, indexLeft);
+        }
     }
     else if (Pow2Exp != -1) {
         printf("bltz $s%d,L%d\n", indexLeft, *Lcount);
