@@ -1,0 +1,35 @@
+\documentclass[11pt]{article}
+
+\usepackage[shortlabels]{enumitem}
+\usepackage[margin=1in,headheight=15pt]{geometry}   % Adjusted headheight
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{amsfonts}
+
+% Set up fancy header/footer
+\pagestyle{fancy}
+\fancyhead[LO,L]{Jimmy Chen}
+\fancyhead[CO,C]{CSCI 2500 - Computer Organization}
+\fancyhead[RO,R]{November 13, 2023}
+\fancyfoot[LO,L]{}
+\fancyfoot[CO,C]{\thepage}
+\fancyfoot[RO,R]{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+\section{Homework 3}
+
+
+\subsection{Boolean Algebra}
+\begin{enumerate}
+    \item Simplify the following expressions using Boolean algebraic laws. Give each step of your simplification and denote which laws you’re using for each step. Do not skip or combine steps!
+    \begin{enumerate}[(a)]
+        \item  $A * (\overline{A}+B*B) + \overline{(B+A)} * (overline{A} + B)$
+        \item $\overline{C * B} + ( A * B * C) + \overline{A + B + \overline{B}}$
+        \item $(A + B) * (\overline{A} + C) * (\overline{C} + B)$
+    \end{enumerate}
+\end{enumerate}
+\end{document}
