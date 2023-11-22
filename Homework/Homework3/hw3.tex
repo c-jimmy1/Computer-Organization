@@ -27,6 +27,7 @@
 \begin{enumerate}
     \item Simplify the following expressions using Boolean algebraic laws. Give each step of your simplification and denote which laws you’re using for each step. Do not skip or combine steps!
     \begin{enumerate}[(a)]
+        % =========Question 1a=========
         \item  $A * (\overline{A}+B*B) + (\overline{B+A}) * (\overline{A} + B)$\\
         \textbf{Work:}
         \begin{center}
@@ -38,11 +39,45 @@
                 \textbf{Answer: $A * B + \overline{B} * \overline{A}$}
                 \end{center}
             \end{minipage}}
-        
         \end{center} 
+        % =========Question 1b=========
         \item $\overline{C * B} + ( A * B * C) + \overline{A + B + \overline{B}}$\\
         \textbf{Work:}
-        \item $(A + B) * (\overline{A} + C) * (\overline{C} + B)$
+        \begin{center}
+            $\overline{C} + \overline{B} + (A * B * C) + \overline{A + C + \overline{B}}$ // Demorgan's law\\
+            $\overline{C} + \overline{B} + (A * B * C) + \overline{A} * \overline{C} * B$ // Involution Law\\
+            $\overline{C} + \overline{B} + A * B * C$ // Absorption Law\\
+            $\overline{C} + \overline{B} + A * B$ // Absorption Law\\
+            $\overline{C} + \overline{B} + A$ // Absorption Law\\
+            \fbox{\begin{minipage}{15em}
+                \begin{center}
+                \textbf{Answer: $\overline{C} + \overline{B} + A$}
+                \end{center}
+            \end{minipage}}
+        \end{center}
+        % =========Question 1c=========
+        \item $(A + B) * (\overline{A} + C) * (\overline{C} + B)$ \\
+        \textbf{Work:}
+        \begin{center}
+            $(\overline{A} + C) * (\overline{C} + B) * A + (\overline{A} + C) * (\overline{C} + B) * B$ // Distributive Law\\
+            $(\overline{C} + B) * A * \overline{A} + (\overline{C} + B) * A * C + (\overline{A} + C) * (\overline{C} + B) * B$ // Distributive Law\\
+            $0 + (\overline{C} + B) * A * C + (\overline{A} + C) * (\overline{C} + B) * B$ // Complement Law\\
+            $(\overline{C} + B) * A * C + (\overline{A} + C) * (\overline{C} + B) * B$ // Identity Law\\
+            $A * A * \overline{C} + A * C * B + (\overline{A} + C) * (\overline{C} + B) * B$ // Distributive Law\\
+            $0 + A * C * B + (\overline{A} + C) * (\overline{C} + B) * B$ // Complement Law\\
+            $A * C * B + (\overline{A} + C) * (\overline{C} + B) * B$ // Identity Law\\
+            $A * C * B + B * \overline{A} * \overline{C} + B * \overline{A} * B + (\overline{C} + B) * B * C$ // Distributive Law\\
+            $A * C * B + B * \overline{A} + (\overline{C} + B) * B * C$ // Absorption Law\\
+            $B * (A * C + \overline{A}) + (\overline{C} + B) * B * C$ // Distributive Law\\
+            $B * (C + \overline{A}) + (\overline{C} + B) * B * C$ // Absorption Law\\
+            $B * C + B * \overline{A} + (\overline{C} + B) * B * C$ // Distributive Law\\
+            $B * C + B * \overline{A}$ // Absorption Law\\
+            \fbox{\begin{minipage}{15em}
+                \begin{center}
+                \textbf{Answer: $B * C + B * \overline{A}$}
+                \end{center}
+            \end{minipage}}
+        \end{center}
     \end{enumerate}
     
     \item Find all solutions of the following Boolean equations without using the truth tables:
