@@ -27,22 +27,39 @@
 \begin{enumerate}
     \item Simplify the following expressions using Boolean algebraic laws. Give each step of your simplification and denote which laws you’re using for each step. Do not skip or combine steps!
     \begin{enumerate}[(a)]
-        \item  $A * (\overline{A}+B*B) + \overline{(B+A)} * (\overline{A} + B)$\\
-        \\\textbf{ANSWER:}
-
+        \item  $A * (\overline{A}+B*B) + (\overline{B+A}) * (\overline{A} + B)$\\
+        \textbf{Work:}
+        \begin{center}
+            $A * (\overline{A} + B) + (\overline{B + A}) * (\overline{A} + B)$ // Idempotent law\\
+            $A * B + (\overline{B + A}) * (\overline{A} + B)$ // Redundancy law\\
+            $A * B + \overline{B} * \overline{A} * (\overline{A} + B)$ // Demorgan's law\\
+            \fbox{\begin{minipage}{15em}
+                \begin{center}
+                \textbf{Answer: $A * B + \overline{B} * \overline{A}$}
+                \end{center}
+            \end{minipage}}
+        
+        \end{center} 
         \item $\overline{C * B} + ( A * B * C) + \overline{A + B + \overline{B}}$\\
-        \\
+        \textbf{Work:}
         \item $(A + B) * (\overline{A} + C) * (\overline{C} + B)$
     \end{enumerate}
     
     \item Find all solutions of the following Boolean equations without using the truth tables:
     \begin{enumerate}[(a)]
-        \item $(\overline{A} + C) * (\overline{B} + D + A) * (D + A * \overline{C}) * (\overline{D} + A) = 1$
-        \item $(((\overline{K} * L * N) * (L * M)) + ((\overline{K} + L + N) * (K * \overline{L} * \overline{M}))) * (\overline{K} + \overline{N}) = 1$
+        \item $(\overline{A} + C) * (\overline{B} + D + A) * (D + A * \overline{C}) * (\overline{D} + A) = 1$\\
+        \textbf{Work:}
+        \item $(((\overline{K} * L * N) * (L * M)) + ((\overline{K} + L + N) * (K * \overline{L} * \overline{M}))) * (\overline{K} + \overline{N}) = 1$\\
+        \textbf{Work:}
     \end{enumerate}
 
     \item Simplify the following expression by first constructing a truth table, using that truth table to
-    construct a K-map, and then using that K-map to simplify.
-
+    construct a K-map, and then using that K-map to simplify.\\
+    $Q = \overline{X} * \overline{Y} * Z + X * Y * \overline{Z} + \overline{X} + Y * \overline{Z} + X * \overline{Y} * \overline{Z}$\\
+    \textbf{Work:}
+\end{enumerate}
+\subsection{Logical Circuits}
+\begin{enumerate}
+    \item Convert the following truth table into its sum of products representation:
 \end{enumerate}
 \end{document}

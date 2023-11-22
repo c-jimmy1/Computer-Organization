@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1700027591 "c:/Users/jc219/OneDrive/Desktop/GitHub/CompOrg/Homework/Homework3/hw3.tex" "hw3.pdf" "hw3" 1700027592 0
-  "c:/Users/jc219/OneDrive/Desktop/GitHub/CompOrg/Homework/Homework3/hw3.tex" 1700027591 1839 2dcca3e128388ea0fbb92beee2bcce32 ""
+["pdflatex"] 1700677366 "c:/Users/jc219/OneDrive/Desktop/GitHub/CompOrg/Homework/Homework3/hw3.tex" "hw3.pdf" "hw3" 1700677366 0
+  "c:/Users/jc219/OneDrive/Desktop/GitHub/CompOrg/Homework/Homework3/hw3.tex" 1700677365 2743 e531dd07ba6baec5b9162c1577b08a5c ""
   "c:/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1696299850 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1696298154 1004 54797486969f23fa377b128694d548df ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1696298154 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -56,8 +56,8 @@
   "c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1696313644 4727523 4ef37ceadc2ec6efd3dcefa82676e9ca ""
   "c:/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1696303510 8183295 a171a164c375c438a619cebe060f15e8 ""
   "c:/texlive/2023/texmf.cnf" 1696303436 713 e69b156964470283e0530f5060668171 ""
-  "hw3.aux" 1700027592 238 3c2fb6462e5537873e66108d0cdea59f "pdflatex"
-  "hw3.tex" 1700027591 1839 2dcca3e128388ea0fbb92beee2bcce32 ""
+  "hw3.aux" 1700677366 347 9fa6bee102000ef9de72e64f56dfb48b "pdflatex"
+  "hw3.tex" 1700677365 2743 e531dd07ba6baec5b9162c1577b08a5c ""
   (generated)
   "hw3.aux"
   "hw3.log"
