@@ -1,5 +1,4 @@
 \documentclass[11pt]{article}
-
 \usepackage[shortlabels]{enumitem}
 \usepackage[margin=1in,headheight=15pt]{geometry}   % Adjusted headheight
 \usepackage{amsmath}
@@ -7,6 +6,7 @@
 \usepackage{graphicx}
 \usepackage{cancel}
 \usepackage{amsfonts}
+\usepackage{setspace}
 
 % Set up fancy header/footer
 \pagestyle{fancy}
@@ -19,12 +19,14 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
 
+\onehalfspacing
 \begin{document}
 \section{Homework 3}
 
 % BOOLEAN ALGEBRA QUESTIONS
 \subsection{Boolean Algebra}
 \begin{enumerate}
+    % Question 1
     \item Simplify the following expressions using Boolean algebraic laws. Give each step of your simplification and denote which laws you’re using for each step. Do not skip or combine steps!
     \begin{enumerate}[(a)]
         % =========Question 1a=========
@@ -80,12 +82,21 @@
         \end{center}
     \end{enumerate}
     
+    % Question 2
     \item Find all solutions of the following Boolean equations without using the truth tables:
     \begin{enumerate}[(a)]
+        % =========Question 2a=========
         \item $(\overline{A} + C) * (\overline{B} + D + A) * (D + A * \overline{C}) * (\overline{D} + A) = 1$\\
         \textbf{Work:}
+        \begin{center}
+            
+        \end{center}
+        % =========Question 2b=========
         \item $(((\overline{K} * L * N) * (L * M)) + ((\overline{K} + L + N) * (K * \overline{L} * \overline{M}))) * (\overline{K} + \overline{N}) = 1$\\
         \textbf{Work:}
+        \begin{center}
+            
+        \end{center}
     \end{enumerate}
 
     \item Simplify the following expression by first constructing a truth table, using that truth table to
@@ -93,8 +104,193 @@
     $Q = \overline{X} * \overline{Y} * Z + X * Y * \overline{Z} + \overline{X} + Y * \overline{Z} + X * \overline{Y} * \overline{Z}$\\
     \textbf{Work:}
 \end{enumerate}
+
 \subsection{Logical Circuits}
 \begin{enumerate}
-    \item Convert the following truth table into its sum of products representation:
+    \setcounter{enumi}{3}
+    % Question 4
+    \item Convert the following truth table into its sum of products representation:\\
+    \begin{tabular}{c c c | c}\\
+            A & B & C & Output \\
+        \hline
+            0 & 0 & 0 & 1 \\
+            0 & 0 & 1 & 0 \\
+            0 & 1 & 0 & 1 \\
+            0 & 1 & 1 & 1 \\
+            1 & 0 & 0 & 0 \\
+            1 & 0 & 1 & 0 \\
+            1 & 1 & 0 & 0 \\
+            1 & 1 & 1 & 1 \\
+    \end{tabular}\\
+    \textbf{Work:}
+    \begin{center}
+        \begin{tabular}{c c c | c}
+            0 & 0 & 0 & 1  = $\overline{A} * \overline{B} * \overline{C}$\\
+        \end{tabular}\\
+        \begin{tabular}{c c c | c}\\
+            0 & 1 & 0 & 1  = $\overline{A} * B * \overline{C}$\\
+        \end{tabular}\\
+        \begin{tabular}{c c c | c}\\
+            0 & 1 & 1 & 1  = $\overline{A} * B * C$\\
+        \end{tabular}\\
+        \begin{tabular}{c c c | c}\\
+            1 & 1 & 1 & 1  = $A * B * C$\\
+        \end{tabular}\\
+        \fbox{\begin{minipage}{30em}
+            \begin{center}
+            $\overline{A} * \overline{B} * \overline{C} + \overline{A} * B * \overline{C} + \overline{A} * B * C + A * B * C$\\
+            \textbf{Simplified Answer: $\overline{A} * \overline{C} + B * C$}
+        \end{center}
+        \end{minipage}}
+    \end{center}
+    % Question 5
+    \item Draw a logical circuit diagram that represents the above sum of products expression using OpenCircuits (https://opencircuits.io/). Clearly label all inputs/outputs and all
+    components. Make sure you connect appropriate input components (e.g., buttons, switches, clocks, etc.) and output components (e.g., LEDs, displays, etc.) to facilitate testing of
+    your circuit.Download your diagram using OpenCircuits' “Download” feature, rename it to
+    hw3\_SOP.circuit, and submit on Submitty along with your hw3.pdf file.
+
+    %Question 6
+    \item Test you circuit by supplying appropriate inputs and observing the expected values of the
+    output. Explain why your set of tests is sufficient to prove that your logical circuit does in
+    fact implement the required Boolean function. For each test, provide a picture (snapshot) of
+    your circuit. Insert all such pictures in the hw3.pdf PDF file. You can download pictures
+    (PNG, JPEG, or PDF) of your circuit diagram using OpenCircuits' “Export Image” feature.
+    
+    %Question 7
+    \item Given inputs A and B, show that NOR \{$(\overline{A + B})$\} is functionally complete by giving logical
+    circuits equivalent to AND \{$(A * B)$\}, OR \{$(A + B)$\}, and NOT \{$(\overline{A})$\} using only NOR gates in their construction.
+\end{enumerate}
+
+\subsection{Numerical Conversions and Arithmetic}
+\begin{enumerate}
+    \setcounter{enumi}{7}
+    %Question 8
+    \item For each of the following numbers, convert them to their closest single precision IEEE 754
+    floating point representation. First, denote the binary values of the sign, fraction, and exponent. Then provide a 32-bit hexadecimal value. Show your steps.\\
+    % =========Question 8a=========
+    a. $50.4375$\\
+    \textbf{Work:}
+    \begin{center}
+        Sign: $0$\\
+        Exp: $5 + 127 = 132 = 10000100$\\
+        Mantissa: $110010.0111 = 1.100100111 * 2^5$\\
+        \fbox{\begin{minipage}{23em}
+            \begin{center}
+            \textbf{Answer: $0\ 10000100\ 10010011100000000000000$}
+            \end{center}
+        \end{minipage}}
+    \end{center}
+    % =========Question 8b=========
+    b. $0.0$\\
+    \textbf{Work:}
+    \begin{center}
+        Sign: $0$\\
+        Mantissa: $0$\\
+        \fbox{\begin{minipage}{23em}
+            \begin{center}
+            \textbf{Answer: $0\ 00000000\ 00000000000000000000000$}
+            \end{center}
+        \end{minipage}}
+    \end{center}
+    % =========Question 8c=========
+    c. \textit{$-Infinity$}\\
+    \textbf{Work:}
+    \begin{center}
+        Sign: $1$ \textit{// Since it's negative}\\
+        Exp: $1$ \textit{// All 1s - which in binary is 11111111}\\
+        Mantissa: $0$\\
+        \fbox{\begin{minipage}{23em}
+            \begin{center}
+            \textbf{Answer: $1\ 11111111\ 00000000000000000000000$}
+            \end{center}
+        \end{minipage}}
+    \end{center}
+    % =========Question 8d=========
+    d. $1.0000001$
+    \textbf{Work:}
+    \begin{center}
+        Sign: $0$ \textit{// Since it's positive}\\
+        Exp: $01111111 = 127$\\
+        Mantissa: $1.0000001 = 1.0000001 * 2^0$\\
+        Normalized: $00000000000000000000001$
+        \fbox{\begin{minipage}{23em}
+            \begin{center}
+            \textbf{Answer: $0\ 01111111\ 00000000000000000000001$}
+            \end{center}
+        \end{minipage}}
+    \end{center}
+    %Question 9
+    \item For each of the following hexadecimal values, convert them from single precision IEEE 754
+    floating point representation to decimal rational numbers. You may leave large powers of
+    two in the exponential form, and you may express your answer as a ratio (e.g., $-\frac{5}{8}, \frac{1}{2^{64}}$). \\
+    Show your steps.\\
+    % =========Question 9a=========
+    a. $0xc349a000\\$
+    \textbf{Work:}
+    \begin{center}
+        In Binary Form: $1100 0011 0100 1001 1010 0000 0000 0000$\\
+        Sign: $1$ \textit{// Since it's negative}\\
+        Exp: $10000110 = 134 = 2^1 + 2^2 + 2^7$\\
+        The rest of the bits are the mantissa: $1001 1010 0000 0000 0000 = 2^{-1} + 2^{-4} + 2^{-7} + 2^{-8} + 2^{-10} = 589/1024$\\
+        Converting: $(-1^1) * (1 + 589/1024) * 2^{134-127} = -(1613/8)$\\
+        \fbox{\begin{minipage}{15em}
+            \begin{center}
+            \textbf{Answer: $-(1613/8)$}
+            \end{center}
+        \end{minipage}}
+    \end{center}
+
+    % =========Question 9b=========
+    b. $0xffe00001\\$
+    \textbf{Work:}
+    \begin{center}
+        In Binary Form: $1111 1111 1110 0000 0000 0000 0000 0001$\\
+        Sign: $1$ \textit{// Since it's negative}\\
+        Exp: $11111111 = 255 = 2^0 + 2^1 + 2^2 + 2^3 + 2^4 + 2^5 + 2^6 + 2^7$\\
+        The rest of the bits are the mantissa: $110 0000 0000 0000 0000 0001 = 2^{-1} + 2^{-2} + 2^{-23} = 6291457 / 2^{23}$
+        Converting: $(-1)^1 * (1 + 6291457 / 2^{23}) * 2^{255-127} = -(6291459/2^{104})$\\
+        \fbox{\begin{minipage}{15em}
+            \begin{center}
+            \textbf{Answer: $-(6291459/2^{104})$}
+            \end{center}
+        \end{minipage}}
+    \end{center}
+
+    % =========Question 9c=========
+    c. $0x80000000\\$
+    \textbf{Work:}
+    \begin{center}
+        In Binary Form: $1000 0000 0000 0000 0000 0000 0000 0000$\\
+        Sign: $1$ \textit{// Since it's negative}\\
+        Exp: $00000000 = 0$\\
+        The rest of the bits are the mantissa: $000 0000 0000 0000 0000 0000 = 0$\\
+        Converting: $(-1)^1 * (1 + 0) * 2^{0-127}$\\
+        \fbox{\begin{minipage}{15em}
+            \begin{center}
+            \textbf{Answer: $-(1/2^{127})$}
+            \end{center}
+        \end{minipage}}
+    \end{center}
+
+    % =========Question 9d=========
+    d. $0x00400000$\\
+    \textbf{Work:}
+    \begin{center}
+        In Binary Form: $0000 0000 0100 0000 0000 0000 0000 0000$\\
+        Sign: $0$ \textit{// Since it's positive}\\
+        Exp: $00000000 = 0$\\
+        The rest of the bits are the mantissa: $100 0000 0000 0000 0000 0000 = 2^{-1} = 1/2$\\
+        Converting: $(-1)^0 * (1 + 1/2) * 2^{0-127}$\\
+        \fbox{\begin{minipage}{15em}
+            \begin{center}
+            \textbf{Answer: $3/2^{128}$}
+            \end{center}
+        \end{minipage}}
+    \end{center}
+    
+    %Question 10
+    \item Give a reason why we use 2's complement representations for negative numbers in computer
+    arithmetic. Give an example of its usage.
+    
 \end{enumerate}
 \end{document}
