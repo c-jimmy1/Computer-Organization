@@ -290,7 +290,15 @@
     
     %Question 10
     \item Give a reason why we use 2's complement representations for negative numbers in computer
-    arithmetic. Give an example of its usage.
-    
+    arithmetic. Give an example of its usage.\\
+    \textbf{Answer:}
+    \begin{center}
+        The 2's complement representation is favored in computer arithmetic for negative numbers because it makes the addition and subtraction of positive and negative numbers easier. 
+        This method enables the utilization of the same circuitry for both types of numbers, simplifying hardware implementation and boosting efficiency. 
+        Consequently, a single set of instructions suffices for performing arithmetic operations, whether they involve unsigned or signed numbers.
+
+        An example would be if we take take the 8-bit bumbers 10 (00001010 in binary) and -6 (11111010 in binary, two's complement) and add them together, we get 4 (00000100 in binary). This is because 10 + (-6) = 4.
+        Doing this, there is no special handling for negatives.\\
+    \end{center}
 \end{enumerate}
 \end{document}
