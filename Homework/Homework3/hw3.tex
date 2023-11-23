@@ -87,18 +87,55 @@
     \begin{enumerate}[(a)]
         % =========Question 2a=========
         \item $(\overline{A} + C) * (\overline{B} + D + A) * (D + A * \overline{C}) * (\overline{D} + A) = 1$\\
-        \textbf{Work:}
-        \begin{center}
-            
-        \end{center}
+        \textbf{Work:}\\
+            $ (\overline{A} * \overline{B} + \overline{A} * D + \overline{A} * A + \overline{B} * C + C * D + C * A) * (D + A * \overline{C}) * (\overline{D} + A) = 1$ //Distributive\\
+            $ (\overline{A} * \overline{B} + \overline{A} * D + 0 + \overline{B} * C + C * D + C * A) * (D + A * \overline{C}) * (\overline{D} + A) = 1$ //Complement\\
+            $ (\overline{A} * \overline{B} + \overline{A} * D + \overline{B} * C + C * D + C * A) * (D * \overline{D} + \overline{C} * A \overline{D} + \overline{C} * A) = 1$\\
+            $ (\overline{A} * \overline{B} + \overline{A} * D + \overline{B} * C + C * D + C * A) * (0 + A * D + \overline{C} * A * \overline{D} + A * \overline{C} * A) = 1$\\
+            $ (\overline{A} * \overline{B} + \overline{A} * D + \overline{B} * C + C * D + C * A) * (D * A + A * \overline{C} * \overline{D} + A * \overline{C} * A) = 1$ //Identity\\
+            $ (\overline{A} * \overline{B} + \overline{A} * D + \overline{B} * C + C * D + C * A) * (D * A + A * \overline{C} * \overline{D} + A * \overline{C}) = 1$ //Idempotent\\ 
+            $ (\overline{A} * \overline{B} + \overline{A} * D + \overline{B} * C + C * D + C * A) * (D * A + A * \overline{C} * (\overline{D} + 1)) = 1$ //Distributive\\
+            $ (\overline{A} * \overline{B} +  \overline{B} * C + C * D + C * A) * (D * A + A * \overline{C}) = 1$ //Identity Law\\
+            $ (\overline{A} * \overline{B} * D * A + \overline{A} * D * D * A + C * \overline{B} * D * A + C * D * D * A + C * A * D * A) + \overline{A} * \overline{B} * \overline{C} * A + \overline{A} * D * \overline{C} * A + C * \overline{B} * \overline{C} * A + C * D * \overline{C} * A + C * A * \overline{C} * A = 1$ //Distributive\\
+            $ (0 + 0 + C * \overline{B} * D * A + C * D * D * A + C * A * D * A) + 0 + 0 + C * \overline{B} * \overline{C} * A + C * D * \overline{C} * A + C * A * \overline{C} * A = 1$\\
+            $ (0 + 0 + C * \overline{B} * D * A + C * D * D * A + C * A * D * A) + 0 + 0 + 0 + 0 + 0 = 1$ //Complement\\
+            $ C * \overline{B} * D * A + C * D * D * A + C * A * D * A = 1$ //Identity Law\\
+            $ C * \overline{B} * D * A + A * C * D + C * A * D= 1$ //Idempotent Law\\
+            $ C * \overline{B} * D * A + A * C * D = 1$ //Idempotent Law\\
+            $ (\overline{B} + 1) * A * C * D = 1$ //Distributive Law\\
+            $ A * C * D = 1$ //Identity Law
+            \begin{center}
+                \fbox{\begin{minipage}{15em}
+                    \begin{center}
+                    \textbf{Answer: $A = 1, C = 1, D = 1$}\\
+                    \textit{B can be anything}
+                    \end{center}
+                \end{minipage}}
+            \end{center}
         % =========Question 2b=========
         \item $(((\overline{K} * L * N) * (L * M)) + ((\overline{K} + L + N) * (K * \overline{L} * \overline{M}))) * (\overline{K} + \overline{N}) = 1$\\
-        \textbf{Work:}
-        \begin{center}
-            
-        \end{center}
+        \textbf{Work:}\\
+            $(((\overline{K} * L * L * N) + \overline{K} * L * N * M) + ((\overline{K} * K * \overline{L} * \overline{M} + L * K * \overline{L} * \overline{M} + N * K * \overline{L} * \overline{M})))*(\overline{K}+\overline{N}) = 1$ //Distributive Law\\
+            $(((\overline{K} * L * L * N) + \overline{K} * L * N * M) + ((0 + 0 + K * N * \overline{L} * \overline{M}))) * (\overline{K}+ \overline{N}) = 1$ //Complement\\  
+            $(((\overline{K} * L * L * N) + \overline{K} * L * N * M) + ((K * N * \overline{L} * \overline{M}))) * (\overline{K} + \overline{N}) = 1$ //Identity Law\\
+            $(\overline{K}* L * L * N + \overline{K} * L * N * M + N * K * \overline{L} * \overline{M}) * (\overline{K} + \overline{N}) = 1$ //Commutative Law\\
+            $(\overline{K}* L * L * N + \overline{K} * L * N * M * \overline{K} + K * N * \overline{L} * \overline{M} * \overline{K}) + \overline{K} * L * L * N * \overline{N} + \overline{K} * L * N * M * \overline{N} + N * K * \overline{L} * \overline{M} * \overline{N} = 1$ //Distributive Law\\
+            $(\overline{K}* L * L * N + \overline{K} * L * N * M * \overline{K} + 0) + 0 + 0 + 0= 1$ //Complement Law\\
+            $(\overline{K} * L * N + \overline{K} * L * N * M + 0) + 0 + 0 + 0 = 1$ //Idempotent Law\\
+            $(\overline{K} * L * N + \overline{K} * L * N * M) = 1$ //Identity Law\\
+            $(\overline{K} * L * N(1 + M)) = 1$ //Distributive Law\\
+            $\overline{K} * L * N = 1$ //Identity Law
+            \begin{center}
+                \fbox{\begin{minipage}{15em}
+                    \begin{center}
+                    \textbf{Answer: $K = 0, L = 1, N = 1$}\\
+                    \textit{M can be anything}
+                    \end{center}
+                \end{minipage}}
+            \end{center}
     \end{enumerate}
 
+    % Question 3
     \item Simplify the following expression by first constructing a truth table, using that truth table to
     construct a K-map, and then using that K-map to simplify.\\
     $Q = \overline{X} * \overline{Y} * Z + X * Y * \overline{Z} + \overline{X} + Y * \overline{Z} + X * \overline{Y} * \overline{Z}$\\
@@ -149,14 +186,14 @@
     your circuit.Download your diagram using OpenCircuits' “Download” feature, rename it to
     hw3\_SOP.circuit, and submit on Submitty along with your hw3.pdf file.
 
-    %Question 6
+    % Question 6
     \item Test you circuit by supplying appropriate inputs and observing the expected values of the
     output. Explain why your set of tests is sufficient to prove that your logical circuit does in
     fact implement the required Boolean function. For each test, provide a picture (snapshot) of
     your circuit. Insert all such pictures in the hw3.pdf PDF file. You can download pictures
     (PNG, JPEG, or PDF) of your circuit diagram using OpenCircuits' “Export Image” feature.
     
-    %Question 7
+    % Question 7
     \item Given inputs A and B, show that NOR \{$(\overline{A + B})$\} is functionally complete by giving logical
     circuits equivalent to AND \{$(A * B)$\}, OR \{$(A + B)$\}, and NOT \{$(\overline{A})$\} using only NOR gates in their construction.
 \end{enumerate}
@@ -164,7 +201,7 @@
 \subsection{Numerical Conversions and Arithmetic}
 \begin{enumerate}
     \setcounter{enumi}{7}
-    %Question 8
+    % Question 8
     \item For each of the following numbers, convert them to their closest single precision IEEE 754
     floating point representation. First, denote the binary values of the sign, fraction, and exponent. Then provide a 32-bit hexadecimal value. Show your steps.\\
     % =========Question 8a=========
@@ -288,7 +325,7 @@
         \end{minipage}}
     \end{center}
     
-    %Question 10
+    % Question 10
     \item Give a reason why we use 2's complement representations for negative numbers in computer
     arithmetic. Give an example of its usage.\\
     \textbf{Answer:}
