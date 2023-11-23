@@ -140,6 +140,38 @@
     construct a K-map, and then using that K-map to simplify.\\
     $Q = \overline{X} * \overline{Y} * Z + X * Y * \overline{Z} + \overline{X} + Y * \overline{Z} + X * \overline{Y} * \overline{Z}$\\
     \textbf{Work:}
+    \begin{center}
+        \textbf{Truth Table:}\\
+        \begin{tabular}{c c c | c}\\
+            X & Y & Z & Q \\
+        \hline
+            0 & 0 & 0 & 0 \\
+            0 & 0 & 1 & 0 \\
+            0 & 1 & 0 & 1 \\
+            0 & 1 & 1 & 1 \\
+            1 & 0 & 0 & 0 \\
+            1 & 0 & 1 & 0 \\
+            1 & 1 & 0 & 0 \\
+            1 & 1 & 1 & 1 \\
+        \end{tabular}\\ [0.25in]
+
+        \textbf{K-Map:}\\[0.15in]
+        \begin{tabular}{c | c | c | c | c |}
+            \textbf{X\textbackslash YZ} & \textbf{00} & \textbf{01} & \textbf{11} & \textbf{10}\\
+            \hline
+            \textbf{0} & 0 & 1 & 0 & 1\\
+            \hline
+            \textbf{1} & 0 & 0 & 1 & 0\\
+            \hline
+        \end{tabular}\\[0.25in]
+        
+        \fbox{\begin{minipage}{20em}
+            \begin{center}
+                \textbf{Simplified Answer:} $Q = \overline{X} * Z + X * \overline{Y} * \overline{Z}$\\
+            \end{center}
+        \end{minipage}}\\[0.25in]
+        
+    \end{center}
 \end{enumerate}
 
 \subsection{Logical Circuits}
@@ -151,13 +183,13 @@
             A & B & C & Output \\
         \hline
             0 & 0 & 0 & 1 \\
-            0 & 0 & 1 & 0 \\
-            0 & 1 & 0 & 1 \\
-            0 & 1 & 1 & 1 \\
-            1 & 0 & 0 & 0 \\
+            0 & 0 & 1 & 1 \\
+            0 & 1 & 0 & 0 \\
+            0 & 1 & 1 & 0 \\
+            1 & 0 & 0 & 1 \\
             1 & 0 & 1 & 0 \\
-            1 & 1 & 0 & 0 \\
-            1 & 1 & 1 & 1 \\
+            1 & 1 & 0 & 1 \\
+            1 & 1 & 1 & 0 \\
     \end{tabular}\\
     \textbf{Work:}
     \begin{center}

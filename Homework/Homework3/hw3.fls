@@ -99,7 +99,9 @@ INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT c:/texlive/2023/texmf-dist/tex/latex/base/omscmr.fd
 INPUT c:/texlive/2023/texmf-dist/tex/latex/base/omscmr.fd
 INPUT c:/texlive/2023/texmf-dist/tex/latex/base/omscmr.fd
+INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbsy10.tfm
 INPUT hw3.aux
+INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
