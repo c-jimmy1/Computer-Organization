@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.2)  23 NOV 2023 01:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.2)  23 NOV 2023 03:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -162,20 +162,20 @@ File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
 ) (./hw3.aux)
 \openout1 = `hw3.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -230,44 +230,104 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (c:/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 33.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 34.
  (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 33.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 34.
  (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1{c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ] [2]
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 160.
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 161.
  (c:/texlive/2023/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/bx/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 160.
+(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 161.
  [3]
+<./images/0_0_0.png, id=19, 482.55281pt x 258.21469pt>
+File: ./images/0_0_0.png Graphic file (type png)
+<use ./images/0_0_0.png>
+Package pdftex.def Info: ./images/0_0_0.png  used on input line 223.
+(pdftex.def)             Requested size: 289.5339pt x 154.93pt.
+File: ./images/0_0_0.png Graphic file (type png)
+<use ./images/0_0_0.png>
+Package pdftex.def Info: ./images/0_0_0.png  used on input line 234.
+(pdftex.def)             Requested size: 289.5339pt x 154.93pt.
+<./images/0_1_0.png, id=21, 761.84625pt x 414.79968pt>
+File: ./images/0_1_0.png Graphic file (type png)
+<use ./images/0_1_0.png>
+Package pdftex.def Info: ./images/0_1_0.png  used on input line 236.
+(pdftex.def)             Requested size: 289.50458pt x 157.62552pt.
+<./images/0_1_1.png, id=22, 761.09344pt x 413.29407pt>
+File: ./images/0_1_1.png Graphic file (type png)
+<use ./images/0_1_1.png>
+Package pdftex.def Info: ./images/0_1_1.png  used on input line 238.
+(pdftex.def)             Requested size: 289.21852pt x 157.05336pt.
+<./images/1_1_1.png, id=23, 755.82375pt x 413.29407pt>
+File: ./images/1_1_1.png Graphic file (type png)
+<use ./images/1_1_1.png>
+Package pdftex.def Info: ./images/1_1_1.png  used on input line 240.
+(pdftex.def)             Requested size: 287.216pt x 157.05336pt.
+<./images/1_0_1.png, id=24, 730.22812pt x 408.02437pt>
+File: ./images/1_0_1.png Graphic file (type png)
+<use ./images/1_0_1.png>
+Package pdftex.def Info: ./images/1_0_1.png  used on input line 242.
+(pdftex.def)             Requested size: 288.44252pt x 161.17097pt.
+<./images/1_0_0.png, id=25, 728.7225pt x 408.77719pt>
+File: ./images/1_0_0.png Graphic file (type png)
+<use ./images/1_0_0.png>
+Package pdftex.def Info: ./images/1_0_0.png  used on input line 244.
+(pdftex.def)             Requested size: 287.8478pt x 161.46834pt.
+<./images/0_0_1.png, id=26, 727.96968pt x 409.53pt>
+File: ./images/0_0_1.png Graphic file (type png)
+<use ./images/0_0_1.png>
+Package pdftex.def Info: ./images/0_0_1.png  used on input line 246.
+(pdftex.def)             Requested size: 287.55043pt x 161.7657pt.
+<./images/1_1_0.png, id=27, 724.95844pt x 407.27156pt>
+File: ./images/1_1_0.png Graphic file (type png)
+<use ./images/1_1_0.png>
+Package pdftex.def Info: ./images/1_1_0.png  used on input line 248.
+(pdftex.def)             Requested size: 289.97824pt x 162.90573pt.
+ [4 <./images/0_0_0.png>] [5 <./images/0_1_0.png> <./images/0_1_1.png>] [6 <./images/1_1_1.png> <./images/1_0_1.png> <./images/1_0_0.png>]
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 229.
- [4] [5] [6] (./hw3.aux)
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 250.
+<./images/and.png, id=43, 545.78906pt x 245.41687pt>
+File: ./images/and.png Graphic file (type png)
+<use ./images/and.png>
+Package pdftex.def Info: ./images/and.png  used on input line 254.
+(pdftex.def)             Requested size: 256.52089pt x 115.34593pt.
+<./images/or.png, id=44, 459.21562pt x 216.05719pt>
+File: ./images/or.png Graphic file (type png)
+<use ./images/or.png>
+Package pdftex.def Info: ./images/or.png  used on input line 256.
+(pdftex.def)             Requested size: 252.56937pt x 118.8318pt.
+<./images/not.png, id=45, 251.43938pt x 107.65219pt>
+File: ./images/not.png Graphic file (type png)
+<use ./images/not.png>
+Package pdftex.def Info: ./images/not.png  used on input line 258.
+(pdftex.def)             Requested size: 251.43875pt x 107.65192pt.
+ [7 <./images/0_0_1.png> <./images/1_1_0.png> <./images/and.png>] [8 <./images/or.png> <./images/not.png>] [9] [10] (./hw3.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3296 strings out of 474928
- 50521 string characters out of 5763562
+ 3425 strings out of 474928
+ 53146 string characters out of 5763562
  1951785 words of memory out of 5000000
- 24819 multiletter control sequences out of 15000+600000
+ 24948 multiletter control sequences out of 15000+600000
  564836 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,12n,65p,414b,516s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on hw3.pdf (6 pages, 140618 bytes).
+Output written on hw3.pdf (10 pages, 1150180 bytes).
 PDF statistics:
- 73 PDF objects out of 1000 (max. 8388607)
- 44 compressed objects within 1 object stream
+ 110 PDF objects out of 1000 (max. 8388607)
+ 55 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

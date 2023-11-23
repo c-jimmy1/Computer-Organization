@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1700721301 "c:/Users/jc219/OneDrive/Desktop/GitHub/CompOrg/Homework/Homework3/hw3.tex" "hw3.pdf" "hw3" 1700721302 0
-  "c:/Users/jc219/OneDrive/Desktop/GitHub/CompOrg/Homework/Homework3/hw3.tex" 1700721300 19512 ab7cf3e4f3f35d6ee33e58067d1366bd ""
+["pdflatex"] 1700727280 "c:/Users/jc219/OneDrive/Desktop/GitHub/CompOrg/Homework/Homework3/hw3.tex" "hw3.pdf" "hw3" 1700727281 0
+  "c:/Users/jc219/OneDrive/Desktop/GitHub/CompOrg/Homework/Homework3/hw3.tex" 1700727279 21348 8ba4ee2c6f9fb156ce9655c2c8d7e958 ""
   "c:/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1696299850 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1696298154 1004 54797486969f23fa377b128694d548df ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1696298154 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -65,8 +65,19 @@
   "c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1696313644 4727523 4ef37ceadc2ec6efd3dcefa82676e9ca ""
   "c:/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1696303510 8183295 a171a164c375c438a619cebe060f15e8 ""
   "c:/texlive/2023/texmf.cnf" 1696303436 713 e69b156964470283e0530f5060668171 ""
-  "hw3.aux" 1700721301 476 e898660518be48c7ca811497559e81b8 "pdflatex"
-  "hw3.tex" 1700721300 19512 ab7cf3e4f3f35d6ee33e58067d1366bd ""
+  "hw3.aux" 1700727281 477 cb7aa0c2b4fba56c35c3c2c2dfc12a9e "pdflatex"
+  "hw3.tex" 1700727279 21348 8ba4ee2c6f9fb156ce9655c2c8d7e958 ""
+  "images/0_0_0.png" 1700723806 48219 f3f5b49c55cda54b5e0d4252df2e9521 ""
+  "images/0_0_1.png" 1700725388 141215 0cb732ae7527a4e05e9c205403816854 ""
+  "images/0_1_0.png" 1700724819 165643 e910479dd4c639298af8ffd25004fe5f ""
+  "images/0_1_1.png" 1700725089 167492 19cecdc5d4a85ae56bb4e10dcb887849 ""
+  "images/1_0_0.png" 1700725363 140091 aae46d67e4b3711c93349d8df01468dc ""
+  "images/1_0_1.png" 1700725249 141084 5ce6cf8b7a8654bc517748aed6a19958 ""
+  "images/1_1_0.png" 1700725413 146479 e0a75a93e2c4225d061c4c3e505bf8f3 ""
+  "images/1_1_1.png" 1700725130 163990 dd914ec78b4c657cd7ec33d731e0491b ""
+  "images/and.png" 1700726847 32861 d5c1d141fb3e4156fa452918bd36c6c2 ""
+  "images/not.png" 1700727155 6257 0c97b7f17414dd5b5a0f530eb1a4a83c ""
+  "images/or.png" 1700727040 31739 584fff841e43e46efbe5eb7479c4b626 ""
   (generated)
   "hw3.aux"
   "hw3.log"

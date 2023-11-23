@@ -18,8 +18,9 @@
 \fancyfoot[RO,R]{}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
-
+\graphicspath{ {./images/} }
 \onehalfspacing
+
 \begin{document}
 \section{Homework 3}
 
@@ -204,7 +205,7 @@
         \end{tabular}\\
         \begin{tabular}{c c c | c}\\
             1 & 1 & 1 & 1  = $A * B * C$\\
-        \end{tabular}\\
+        \end{tabular}\\[0.15in]
         \fbox{\begin{minipage}{30em}
             \begin{center}
             $\overline{A} * \overline{B} * \overline{C} + \overline{A} * B * \overline{C} + \overline{A} * B * C + A * B * C$\\
@@ -212,22 +213,49 @@
         \end{center}
         \end{minipage}}
     \end{center}
+
     % Question 5
     \item Draw a logical circuit diagram that represents the above sum of products expression using OpenCircuits (https://opencircuits.io/). Clearly label all inputs/outputs and all
     components. Make sure you connect appropriate input components (e.g., buttons, switches, clocks, etc.) and output components (e.g., LEDs, displays, etc.) to facilitate testing of
     your circuit.Download your diagram using OpenCircuits' “Download” feature, rename it to
-    hw3\_SOP.circuit, and submit on Submitty along with your hw3.pdf file.
-
+    hw3\_SOP.circuit, and submit on Submitty along with your hw3.pdf file.\\[0.25in]
+    \textbf{Answer: The Circuit below was uploaded to Submitty}\\
+    \includegraphics[scale=0.6]{0_0_0}
     % Question 6
     \item Test you circuit by supplying appropriate inputs and observing the expected values of the
     output. Explain why your set of tests is sufficient to prove that your logical circuit does in
     fact implement the required Boolean function. For each test, provide a picture (snapshot) of
     your circuit. Insert all such pictures in the hw3.pdf PDF file. You can download pictures
-    (PNG, JPEG, or PDF) of your circuit diagram using OpenCircuits' “Export Image” feature.
-    
+    (PNG, JPEG, or PDF) of your circuit diagram using OpenCircuits' “Export Image” feature.\\[0.25in]
+    \textbf{Answer:}\\
+        Below are the images of the circuit being tested. There are a total of 8 test photos, and they cover all the possible cases.\\[0.55in]
+    \textbf{Images:}\\
+        Case 1: A = 0, B = 0, C = 0; the output is 1, which corresponds to the boolean function\\
+        \includegraphics[scale=0.6]{0_0_0}\\[0.25in]
+        Case 2: A = 0, B = 1, C = 0; the output is 1, which corresponds to the boolean function\\
+        \includegraphics[scale=0.38]{0_1_0}\\[0.25in]
+        Case 3: A = 0, B = 1, C = 1; the output is 1, which corresponds to the boolean function\\
+        \includegraphics[scale=0.38]{0_1_1}\\[0.25in]
+        Case 4: A = 1, B = 1, C = 1; the output is 1, which corresponds to the boolean function\\
+        \includegraphics[scale=0.38]{1_1_1}\\[0.25in]
+        Case 5: A = 1, B = 0, C = 1; the output is 0, which corresponds to the boolean function\\   
+        \includegraphics[scale=0.395]{1_0_1}\\[0.25in]
+        Case 6: A = 1, B = 0, C = 0; the output is 0, which corresponds to the boolean function\\
+        \includegraphics[scale=0.395]{1_0_0}\\[0.25in]
+        Case 7: A = 0, B = 0, C = 1; the output is 0, which corresponds to the boolean function\\
+        \includegraphics[scale=0.395]{0_0_1}\\[0.25in]
+        Case 8: A = 1, B = 1, C = 0; the output is 0, which corresponds to the boolean function\\
+        \includegraphics[scale=0.4]{1_1_0}
     % Question 7
     \item Given inputs A and B, show that NOR \{$(\overline{A + B})$\} is functionally complete by giving logical
-    circuits equivalent to AND \{$(A * B)$\}, OR \{$(A + B)$\}, and NOT \{$(\overline{A})$\} using only NOR gates in their construction.
+    circuits equivalent to AND \{$(A * B)$\}, OR \{$(A + B)$\}, and NOT \{$(\overline{A})$\} using only NOR gates in their construction.\\[0.25in]
+    \textbf{Images:}\\
+    NOR to create: AND Gate\\
+    \includegraphics[scale=0.47]{and}\\[0.25in]
+    NOR to create: OR Gate\\
+    \includegraphics[scale=0.55]{or}\\[0.25in]
+    NOR to create: NOT Gate\\
+    \includegraphics[scale=1]{not}
 \end{enumerate}
 
 \subsection{Numerical Conversions and Arithmetic}
