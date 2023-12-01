@@ -38,12 +38,57 @@ For context: The encoded instruction is \textbf{sw \$t4, 20(\$t5)}
     \item What are the values of the ALU control unit's inputs for this instruction?\\
     \textbf{Work:}
     \begin{center}
-        Answer
+        Opcode: 0xadac // Opcode for sw\\
+        Source Register (\$t5)\\
+        Destination Register (\$t4)\\
+        Offset: 20\\
+        ALUOperation: 10 (Add)\\
+        ALUSrc (ALU source): 1 (Immediate value from instruction)\\
+        Function: 0 (Not used)\\
+        \fbox{\begin{minipage}{24em}
+            \begin{center}
+                \Large{\textbf{Answer: ALU Control Input: 101}}
+            \end{center}
+        \end{minipage}}
     \end{center}
-    \item What is the new PC address after this instruction is executed? Highlight the path through which this value is determined.
-    \item For each mux, show the values of its inputs and outputs during the execution of this instruction. List values that are register outputs at \textbf{Reg [xn]}
-    \item What are the input values for the ALU and the two add units?
-    \item What are the values of all inputs for the registers unit?
+
+    \item What is the new PC address after this instruction is executed? Highlight the path through which this value is determined.\\
+    \textbf{Work:}
+    \begin{center}
+        ALU operand 1: PC value\\
+        ALU operand 2: 4 // Constant value to add \\
+        \fbox{\begin{minipage}{35em}
+            \begin{center}
+                \Large{\textbf{Answer: The new will be the old PC address + 4.}}
+            \end{center}
+        \end{minipage}}
+    \end{center}
+
+    \item For each mux, show the values of its inputs and outputs during the execution of this instruction. List values that are register outputs at \textbf{Reg [xn]}\\
+    \textbf{Work:}\\[0.15in]
+    Mux1 (ALU Source):
+    \begin{itemize}
+        \item Input 0: PC + 4
+        \item Input 1: Sign-extended offset
+        \item Output: Sign-extended offset
+    \end{itemize}
+    Mux2 (Write Register):
+    \begin{itemize}
+        \item Input 0: Register \$t4's number // dest reg
+        \item Input 1: Register \$t5's number // src reg
+        \item Selected Input: 0 // since we're writing to \$t4
+    \end{itemize}
+    Mux3 (Write Data):
+    \begin{itemize}
+        \item Input 0: ALU result // memory address to store data
+        \item Input 1: Register \$t4's value // data to be stored in memory
+        \item Selected Input: 1 // since we're writing to \$t4
+    \end{itemize}
+
+    \item What are the input values for the ALU and the two add units?\\
+    \textbf{Work:}
+    \item What are the values of all inputs for the registers unit?\\
+    \textbf{Work:}
 \end{enumerate}
 
 
