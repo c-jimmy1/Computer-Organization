@@ -65,7 +65,7 @@ For context: The encoded instruction is \textbf{sw \$t4, 20(\$t5)}
     \end{center}
 
     \item For each mux, show the values of its inputs and outputs during the execution of this instruction. List values that are register outputs at \textbf{Reg [xn]}\\
-    \textbf{Work:}\\[0.15in]
+    \textbf{Answer:}\\[0.15in]
     Mux1 (ALU Source):
     \begin{itemize}
         \item Input 0: PC + 4
@@ -86,9 +86,22 @@ For context: The encoded instruction is \textbf{sw \$t4, 20(\$t5)}
     \end{itemize}
 
     \item What are the input values for the ALU and the two add units?\\
-    \textbf{Work:}
+    \textbf{Answer:}
+    \begin{center}
+        ALU input 1: Value from register \$t5 //from Mux 1, input 1\\
+        ALU input 2: Offset of 20 //immediate value from instruction\\
+        Add Unit input 1: Value from register \$t5 //from Mux 1, input 1\\
+        Add Unit input 2: Offset of 20 //immediate value from instruction\\
+    \end{center}
     \item What are the values of all inputs for the registers unit?\\
-    \textbf{Work:}
+    \textbf{Answer:}
+    \begin{center}
+        Read Register 1: Value from register \$t4 (from Mux2, input 0)\\
+        Read Register 2: Value from register \$t5 (from Mux1, input 1)\\
+        Write Register: Value from register \$t4 (from Mux2, input 0)\\
+        Write Data: Value from register \$t4 (from Mux3, input 1)\\
+        RegWrite: 1 or Active // since we're writing to \$t4\\
+    \end{center}
 \end{enumerate}
 
 
@@ -107,7 +120,6 @@ Problems in this exercise assume that the logic blocks used to implement a proce
     \item What is the minimum clock period for this CPU?
 \end{enumerate}
 
-
 \setcounter{subsubsection}{9}
 \subsubsection{Question 10}
 When the processor designers consider a possible improvement to the processor datapath, the decision usually depends on the cost/performance trade-off. In the following three problems, assume that we are beginning with the datapath from COD figure 4.21, the latencies from Exercise 4.7, and the following costs:
@@ -116,6 +128,8 @@ Suppose doubling the number of general purpose registers from 32 to 64 would red
 
 \begin{enumerate}[(a)]
     \item What is the speedup achieved by adding this improvement?
+    \textbf{Work:}
+        
     \item Compare the change in performance to the change in cost.
     \item Given the cost/performance ratios you just calculated, describe a situation where it makes sense to add more registers and describe a situation where it doesn't make sense to add more registers.
 \end{enumerate}
