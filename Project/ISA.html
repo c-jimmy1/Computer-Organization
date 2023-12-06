@@ -1,0 +1,135 @@
+<table style="border-collapse: collapse; border: none; border-spacing: 0px;">
+	<caption>
+		Operations that need to be supported by Design~1.
+	</caption>
+	<tr>
+		<td style="border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; border-top: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			<b>Opcode</b>
+		</td>
+		<td style="border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; border-top: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			<b>Operation</b>
+		</td>
+		<td style="border-right: 1px solid black; border-top: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			<b>Microoperations</b>
+		</td>
+		<td style="border-right: 1px solid black; border-top: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			<b>Description</b>
+		</td>
+	</tr>
+	<tr>
+		<td style="border-left: 1px solid black; border-right: 1px solid black; border-top: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			0011
+		</td>
+		<td style="border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			add X
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			MAR ← X # load X into MAR
+			<br>
+			        MBR ← M[MAR] # load value stored at address X into MBR
+			<br>
+			        AC ← AC + MBR # add value in AC with MBR value and store it back into AC
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			Adds value in AC with the value at address X and stores the result into AC
+		</td>
+	</tr>
+	<tr>
+		<td style="border-left: 1px solid black; border-right: 1px solid black; border-top: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			0111
+		</td>
+		<td style="border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			halt
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			&nbsp;
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			Ends the program
+		</td>
+	</tr>
+	<tr>
+		<td style="border-left: 1px solid black; border-right: 1px solid black; border-top: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			0001
+		</td>
+		<td style="border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			load X
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			MAR ← X # load X (address) into MAR
+			<br>
+			        MBR ← M[MAR] # load value stored at address into MBR
+			<br>
+			        AC ← MBR # load value in MBR into AC
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			Loads the value from address X into the AC
+		</td>
+	</tr>
+	<tr>
+		<td style="border-left: 1px solid black; border-right: 1px solid black; border-top: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			0010
+		</td>
+		<td style="border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			store X
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			MAR ← X # load address into MAR
+			<br>
+			        MBR ← AC # load AC value into MBR
+			<br>
+			        M[MAR] ← MBR # writes MBR value into the Memory of address indicated by the MAR
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			Stores the current value from the AC into address X
+		</td>
+	</tr>
+	<tr>
+		<td style="border-left: 1px solid black; border-right: 1px solid black; border-top: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			1010
+		</td>
+		<td style="border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			clear
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			AC ← 0
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			Writes 0 into AC
+		</td>
+	</tr>
+	<tr>
+		<td style="border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; border-top: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			1000
+		</td>
+		<td style="border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			skip C
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			If (C), PC ← (PC) + 1
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			Skips the next instruction based on C. if (C) is:
+			<br>
+			        0: Skips if AC &lt; 0
+			<br>
+			        2: Skips if AC = 0
+			<br>
+			        4: Skips if AC &gt; 0
+		</td>
+	</tr>
+	<tr>
+		<td style="border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			1001
+		</td>
+		<td style="border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			jump X
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			PC ← X
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			Jumps to address X
+		</td>
+	</tr>
+</table>
