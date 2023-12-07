@@ -39,8 +39,8 @@ For context: The encoded instruction is \textbf{sw \$t4, 20(\$t5)}
     \textbf{Work:}
     \begin{center}
         Opcode: 0xadac // Opcode for sw\\
-        Source Register (\$t5)\\
-        Destination Register (\$t4)\\
+        Source Register (\$t5)L 0x00\\
+        Destination Register (\$t4): 0x10\\
         Offset: 20\\
         ALUOperation: 10 (Add)\\
         ALUSrc (ALU source): 1 (Immediate value from instruction)\\
@@ -96,9 +96,9 @@ For context: The encoded instruction is \textbf{sw \$t4, 20(\$t5)}
     \item What are the values of all inputs for the registers unit?\\
     \textbf{Answer:}
     \begin{center}
-        Read Register 1: Value from register \$t4 (from Mux2, input 0)\\
-        Read Register 2: Value from register \$t5 (from Mux1, input 1)\\
-        Write Register: Value from register \$t4 (from Mux2, input 0)\\
+        Read Register 1: Value from register \$t4 (from Mux2, input 0) 0x10\\
+        Read Register 2: Value from register \$t5 (from Mux1, input 1) 0x00\\
+        Write Register: Value from register \$t4 (from Mux2, input 0) 0x10\\
         Write Data: Value from register \$t4 (from Mux3, input 1)\\
         RegWrite: 1 or Active // since we're writing to \$t4\\
     \end{center}
@@ -112,12 +112,77 @@ Problems in this exercise assume that the logic blocks used to implement a proce
 "Register read" is the time needed after the rising clock edge for the new register value to appear on the output. This value applies to the PC only. "Register setup" is the amount of time a register's data input must be stable before the rising edge of the clock. This value applies to both the PC and Register File.
 
 \begin{enumerate}[(a)]
-    \item What is the latency of an R-type instruction(i.e., how long must the clock period be to ensure that this instruction works correctly)?
-    \item What is the latency of lw? (Check your answer carefully. Many students place extra muxes on the critical path.)
-    \item What is the latency of sw? (Check your answer carefully. Many students place extra muxes on the critical path.)
-    \item What is the latency of beq?
-    \item What is the latency of an arithmetic, logical, or shift I-type (non-load) instruction?
-    \item What is the minimum clock period for this CPU?
+    \item What is the latency of an R-type instruction(i.e., how long must the clock period be to ensure that this instruction works correctly)?\\
+    \textbf{Answer:}
+    \begin{center}
+        R-type Instruction Equation: Reg. File + I-Mem/D-Mem + (Mux * 2) + ALU + Reg. Read + Reg. Setup\\
+        150ps + 250ps + 50ps + 200ps + 30ps + 20ps = 700ps\\
+        \fbox{\begin{minipage}{15em}
+            \begin{center}
+                \Large{\textbf{Answer: 700ps}}
+            \end{center}
+        \end{minipage}}
+    \end{center}
+    
+    \item What is the latency of lw? (Check your answer carefully. Many students place extra muxes on the critical path.)\\
+    \textbf{Answer:}
+    \begin{center}
+        Latency of lw Equation = Reg. Read + (I-Mem/D-Mem * 2) + Reg. File + ALU + (2 * Mux) + Reg. Setup\\
+        30ps + 500ps + 150ps + 200ps + 50ps + 20ps = 950ps\\
+        \fbox{\begin{minipage}{15em}
+            \begin{center}
+                \Large{\textbf{Answer: 950ps}}
+            \end{center}
+        \end{minipage}}
+    \end{center}
+
+    \item What is the latency of sw? (Check your answer carefully. Many students place extra muxes on the critical path.)\\
+    \textbf{Answer:}
+    \begin{center}
+        Latency of sw Equation = Reg. Read + (I-Mem/D-Mem * 2) + Reg. File + ALU + Mux\\
+        30ps + 500ps + 150ps + 200ps + 25ps = 905ps\\
+        \fbox{\begin{minipage}{15em}
+            \begin{center}
+                \Large{\textbf{Answer: 905ps}}
+            \end{center}
+        \end{minipage}}
+    \end{center}
+
+    \item What is the latency of beq?\\
+    \textbf{Answer:}
+    \begin{center}
+        Latency of beq Equation = Reg. Read + I-Mem/D-Mem + Reg. File + ALU + (Mux * 2) + Single Gate + Reg. Setup\\
+        30ps + 250ps + 150ps + 50 + 200ps + 5ps + 20ps = 705ps\\
+        \fbox{\begin{minipage}{15em}
+            \begin{center}
+                \Large{\textbf{Answer: 705ps}}
+            \end{center}
+        \end{minipage}}
+    \end{center}
+
+    \item What is the latency of an arithmetic, logical, or shift I-type (non-load) instruction?\\
+    \textbf{Answer:}
+    \begin{center}
+        Latency of I-type Equation = Reg. Read + I-Mem/D-Mem + Reg. File + ALU + (Mux * 2) + Reg. Setup\\
+        30ps + 250ps + 150ps + 200ps + 50ps + 20ps = 700ps\\
+        \fbox{\begin{minipage}{15em}
+            \begin{center}
+                \Large{\textbf{Answer: 700ps}}
+            \end{center}
+        \end{minipage}}
+    \end{center}
+
+    \item What is the minimum clock period for this CPU?\\
+    \textbf{Answer:}
+    \begin{center}
+        Minimum Clock Period Equation = Max(Latency of R-type, Latency of lw, Latency of sw, Latency of beq, Latency of I-type)\\
+        Max(700ps, 950ps, 905ps, 705ps, 700ps) = 950ps\\
+        \fbox{\begin{minipage}{15em}
+            \begin{center}
+                \Large{\textbf{Answer: 950ps}}
+            \end{center}
+        \end{minipage}}
+    \end{center}
 \end{enumerate}
 
 \setcounter{subsubsection}{9}
