@@ -192,13 +192,46 @@ When the processor designers consider a possible improvement to the processor da
 Suppose doubling the number of general purpose registers from 32 to 64 would reduce the number of lw and sw instruction by 12\%, but increase the latency of the register file from 150 ps to 160 ps and double the cost from 200 to 400. (Use the instruction mix from Exercise 4.8 and ignore the other effects on the ISA discussed in Exercise 2.18.)
 
 \begin{enumerate}[(a)]
-    \item What is the speedup achieved by adding this improvement?
+    \item What is the speedup achieved by adding this improvement?\\
     \textbf{Work:}
-        
-    \item Compare the change in performance to the change in cost.
-    \item Given the cost/performance ratios you just calculated, describe a situation where it makes sense to add more registers and describe a situation where it doesn't make sense to add more registers.
-\end{enumerate}
+    \begin{center}
+        Clocktime Before Impr. = 250 + 150 + 25 + 200 + 150 + 5 + 30 + 20 + 50 + 50 = 930 ps\\
+        Clocktime After Impr. = 250 + 160 + 25 + 200 + 150 + 5 + 30 + 20 + 50 + 50 = 940 ps\\
+        Speedup achieved = (930 / 100) / (940/97) = 0.95\\
+        \fbox{\begin{minipage}{15em}
+            \begin{center}
+                \Large{\textbf{Answer: 0.95}}
+            \end{center}
+        \end{minipage}}
+    \end{center}
 
+    \item Compare the change in performance to the change in cost.\\
+    \textbf{Work:}
+    \begin{center}
+        Cost w/o Impr. = 1000 + 10 + 200 + 100 + 2000 + 30 + 5 + 1 + 100 + 500 = 3946\\
+        Cost / Clocktime = 3946 / 930 = 4.24\\
+        Cost w/ Impr. = 1000 + 10 + 400 + 100 + 2000 + 30 + 5 + 1 + 100 + 500 = 4146\\
+        Cost / Clocktime = 4146 / 940 = 4.38\\
+        Change in cost: 4.38 - 4.24 = 0.14\\[0.15in]
+        Performace = 1 / Latency\\
+        Performance w/o Impr. = $1 / (930 * 100 * 10^{-12}) = 10.75 * 10^6$\\
+        Performance w/ Impr. = $1 / (940 * 96 * 10^{-12}) = 11.08 * 10^6$\\
+        Change in performance: 11.08 - 10.75 = 0.33\\[0.15in]
+        The cost ratio is = 4.38 / 4.24 = 1.03\\
+        The performance ratio is = 11.08 / 10.75 = 1.03\\[0.15in]
+        \fbox{\begin{minipage}{15em}
+            \begin{center}
+                \Large{\textbf{Answer: Both are 1.03}}
+            \end{center}
+        \end{minipage}}
+    \end{center}
+    
+    \item Given the cost/performance ratios you just calculated, describe a situation where it makes sense to add more registers and describe a situation where it doesn't make sense to add more registers.\\
+    Increasing the number of registers has led to decreased costs and improved performance. However, prioritizing performance may require accepting higher costs. 
+    Utilizing more registers to decrease the number of instructions can enhance performance but at a higher cost. 
+    Contrarily, if reducing costs is the priority, using fewer registers might be necessary, even though this can lead to a greater number of instructions
+     and subsequently impact latency, ultimately lowering performance. In conclusion, more registers for better performance and fewer registers for cost efficiency.
+\end{enumerate}
 
 \setcounter{subsubsection}{15}
 \subsubsection{Question 16}
@@ -208,11 +241,81 @@ Also, assume that instructions executed by the processor are broken down as foll
 \begin{center}\includegraphics[scale=0.6]{q16_image2}\\\end{center}
 
 \begin{enumerate}[(a)]
-    \item What is the clock cycle time in a pipelined and non-pipelined processor?
-    \item What is the total latency of an lw instruction in a pipelined and non-pipelined processor?
-    \item If we can split one stage of the pipelined datapath into two new stages, each with half the latency of the original stage, which stage would you split and what is the new clock cycle time of the processor?
-    \item Assuming there are no stalls or hazards, what is the utilization of the data memory?
-    \item Assuming there are no stalls or hazards, what is the utilization of the write-register port of the "Registers" unit?
+    \item What is the clock cycle time in a pipelined and non-pipelined processor?\\
+    \textbf{Answer:}
+    \begin{center}
+        For a pipelined processor, the clock cycle time is the time it takes to complete the longest stage.\\ 
+        \fbox{\begin{minipage}{20em}
+            \begin{center}
+                \Large{\textbf{Answer: Pipelined is 350ps}}
+            \end{center}
+        \end{minipage}}\\[0.15in]       
+        For a non-pipelined processor, the clock cycle time is the sum of all the stages.\\
+        Total time = IF + ID + EX + MEM + WB = 250 + 150 + 200 + 500 + 150 = 1250ps\\
+        \fbox{\begin{minipage}{25em}
+            \begin{center}
+                \Large{\textbf{Answer: Non-Pipelined is 1250ps}}
+            \end{center}
+        \end{minipage}}
+    \end{center}
 
+    \item What is the total latency of an lw instruction in a pipelined and non-pipelined processor?
+    \textbf{Answer:}
+    \begin{center}
+        Piplined Processor:
+        The total latency = \# Cycles * \#Clock Cycles\\
+        The total latency = 5 * 350ps = 1750ps\\
+        \fbox{\begin{minipage}{20em}
+            \begin{center}
+                \Large{\textbf{Answer: Pipelined is 1750ps}}
+            \end{center}
+        \end{minipage}}\\[0.15in]
+
+        Non-Pipelined Processor:
+        The total latency = IF + ID + EX + MEM + WB\\
+        The total latency = 250ps + 350ps + 150ps + 300ps + 200ps = 1250ps\\
+        \fbox{\begin{minipage}{25em}
+            \begin{center}
+                \Large{\textbf{Answer: Non-Pipelined is 1250ps}}
+            \end{center}
+        \end{minipage}}
+    \end{center}
+
+    \item If we can split one stage of the pipelined datapath into two new stages, each with half the latency of the original stage, which stage would you split and what is the new clock cycle time of the processor?\\
+    \textbf{Answer:}
+    \begin{center}
+    The stage I would split is the longest stage, which is the ID stage. 
+    The new clock cycle time would be 300ps, which is the max of the new one, which is the MEM\\
+    \fbox{\begin{minipage}{20em}
+        \begin{center}
+            \Large{\textbf{Answer: 300ps}}
+        \end{center}
+    \end{minipage}}
+    \end{center}
+    
+
+    \item Assuming there are no stalls or hazards, what is the utilization of the data memory?\\
+    \textbf{Answer:}
+    \begin{center}
+        The utilization is load + store\\
+        Total utilization  = 20\% + 15\% = 35\%\\
+        \fbox{\begin{minipage}{20em}
+            \begin{center}
+                \Large{\textbf{Answer: 35\%}}
+            \end{center}
+        \end{minipage}}
+    \end{center}
+
+    \item Assuming there are no stalls or hazards, what is the utilization of the write-register port of the "Registers" unit?\\
+    \textbf{Answer:}
+    \begin{center}
+        The utilization is the LW utilization + ALU utilization.\\
+        20\% + 45\% = 65\%\\
+        \fbox{\begin{minipage}{20em}
+            \begin{center}
+                \Large{\textbf{Answer: 65\%}}
+            \end{center}
+        \end{minipage}}
+    \end{center}
 \end{enumerate}
 \end{document}
