@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1701919967 "c:/Users/jc219/OneDrive/Desktop/GitHub/CompOrg/Homework/Homework4/hw4.tex" "hw4.pdf" "hw4" 1701919968 0
-  "c:/Users/jc219/OneDrive/Desktop/GitHub/CompOrg/Homework/Homework4/hw4.tex" 1701919967 14593 dd394527efada60927996075a6eb8372 ""
+["pdflatex"] 1701920000 "c:/Users/jc219/OneDrive/Desktop/GitHub/CompOrg/Homework/Homework4/hw4.tex" "hw4.pdf" "hw4" 1701920000 0
+  "c:/Users/jc219/OneDrive/Desktop/GitHub/CompOrg/Homework/Homework4/hw4.tex" 1701919999 14590 980e2d3f81d5c1cfcd53688c59d4b0bb ""
   "c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1696298927 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1696299850 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/tcbx1095.tfm" 1696299455 1536 0adca69c597a47fe7664bf81057bb53b ""
@@ -64,8 +64,8 @@
   "c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1696313644 4727523 4ef37ceadc2ec6efd3dcefa82676e9ca ""
   "c:/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1696303510 8183295 a171a164c375c438a619cebe060f15e8 ""
   "c:/texlive/2023/texmf.cnf" 1696303436 713 e69b156964470283e0530f5060668171 ""
-  "hw4.aux" 1701919968 679 9600e595f51de2a4da25b238bc5ac1a6 "pdflatex"
-  "hw4.tex" 1701919967 14593 dd394527efada60927996075a6eb8372 ""
+  "hw4.aux" 1701920000 679 9600e595f51de2a4da25b238bc5ac1a6 "pdflatex"
+  "hw4.tex" 1701919999 14590 980e2d3f81d5c1cfcd53688c59d4b0bb ""
   "q10_image.png" 1701405146 18914 926bf8af17f7879c7746a6320bffb764 ""
   "q16_image1.png" 1701405288 7966 414a93b22b29e62d0a128a5945b03c7f ""
   "q16_image2.png" 1701405296 9059 61ea4a17a7d13c84dfd3d3dc42246b66 ""
